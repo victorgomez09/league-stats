@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PlayerNotFound from "@/components/PlayerNotFound";
-import PlayerPageClient from "./PlayerPageClient";
+import PlayerPageClient from "./player-page-client";
 import {
   getSummonerByName,
   getAccountByRiotId,
@@ -18,6 +18,7 @@ import {
   getSummonerMastery
 } from "@/lib/riot-server-api";
 import { Mastery, Match, RankedInfo, Summoner } from "@/lib/types";
+import { getStatsByChamp } from "@/lib/champions-api";
 
 interface PlayerPageProps {
   params: Promise<{
@@ -37,6 +38,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
   let itemsData: ItemsData = {};
   let runesData: RunesData = [];
   let masteries: Mastery[] = [];
+  let championStats: any = null;
 
   try {
     if (summonerName.includes('#')) {
@@ -73,6 +75,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
     itemsData = items;
     runesData = runes;
 
+    championStats = await getStatsByChamp(summoner, matches)
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : "Erro desconhecido";
     error = getErrorMessage(errorMessage);
@@ -108,6 +111,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
         spellsData={spellsData}
         itemsData={itemsData}
         runesData={runesData}
+        championStats={championStats}
       />
     </div>
   );

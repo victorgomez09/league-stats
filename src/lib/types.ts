@@ -269,3 +269,15 @@ export interface DataDragonRuneTree {
   name: string;
   slots: DataDragonRuneSlot[];
 }
+
+export interface ChampionStat {
+  championName: string,
+  games: number,
+  wins: number,
+  kda: string,
+  goldMin: number,
+  csMin: number,
+  killParticipation: number
+  kills: number
+  totalKills: number
+}

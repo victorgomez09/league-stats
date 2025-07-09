@@ -29,7 +29,7 @@ export default function ChampionInfo({ playerData, spellsData, runesData }: Cham
         return spell.name;
       }
     }
-    return 'Desconhecido';
+    return 'Unknown';
   };
 
   const getRuneInfoLocal = (runeId: number): {

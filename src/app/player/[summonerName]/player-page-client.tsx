@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
-import PlayerProfile from "@/components/PlayerProfile";
+import PlayerProfile from "@/components/player-profile";
 import MatchHistory from "@/components/MatchHistory";
 import PlayerStats from "@/components/PlayerStats";
 import {
@@ -11,9 +11,9 @@ import {
   type ItemsData,
   type RunesData
 } from "@/lib/riot-server-api";
-import { Summoner, RankedInfo, Match } from "@/lib/types";
+import { Summoner, RankedInfo, Match, ChampionStat } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import PlayerChampionsStats from "@/components/player-champions-stats";
 
 interface PlayerPageClientProps {
   summoner: Summoner;
@@ -22,6 +22,7 @@ interface PlayerPageClientProps {
   spellsData: SummonerSpellsData;
   itemsData: ItemsData;
   runesData: RunesData;
+  championStats: ChampionStat[]
 }
 
 export default function PlayerPageClient({
@@ -30,7 +31,8 @@ export default function PlayerPageClient({
   initialMatches,
   spellsData,
   itemsData,
-  runesData
+  runesData,
+  championStats
 }: PlayerPageClientProps) {
   const [allMatches, setAllMatches] = useState<Match[]>(initialMatches);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -74,8 +76,9 @@ export default function PlayerPageClient({
       <PlayerStats matches={allMatches} playerPuuid={summoner.puuid} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1">
+        <div className="flex flex-col gap-4 lg:col-span-1">
           <PlayerProfile summoner={summoner} rankedData={rankedData} />
+          <PlayerChampionsStats championStats={championStats} />
         </div>
 
         <div className="lg:col-span-2">

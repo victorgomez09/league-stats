@@ -1,6 +1,6 @@
 "use client";
 
-import { Image } from "@heroui/react";
+import Image from 'next/image'
 import { getChampionSquareUrl } from "@/lib/riot-server-api";
 
 interface Participant {
@@ -35,7 +35,7 @@ export default function TeamsList({ participants, currentPlayerPuuid }: TeamsLis
                 style={{ aspectRatio: '1/1' }}
               />
               <span className="truncate text-[11px] max-w-[85px]">
-                {participant.riotIdGameName || participant.summonerName || 'Jogador'}
+                {participant.riotIdGameName || participant.summonerName || 'Player'}
               </span>
             </div>
           ))}
@@ -57,7 +57,7 @@ export default function TeamsList({ participants, currentPlayerPuuid }: TeamsLis
                 style={{ aspectRatio: '1/1' }}
               />
               <span className="truncate text-[11px] max-w-[85px]">
-                {participant.riotIdGameName || participant.summonerName || 'Jogador'}
+                {participant.riotIdGameName || participant.summonerName || 'Player'}
               </span>
             </div>
           ))}

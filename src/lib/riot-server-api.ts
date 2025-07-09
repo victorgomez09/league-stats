@@ -531,7 +531,6 @@ export async function getRunesData(): Promise<RunesData> {
   }
 }
 
-
 export async function getItemInfo(itemId: number): Promise<{ name: string; description: string }> {
   try {
     const items = await getItemsData();
