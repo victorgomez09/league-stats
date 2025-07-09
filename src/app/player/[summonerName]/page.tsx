@@ -15,10 +15,12 @@ import {
   type SummonerSpellsData,
   type ItemsData,
   type RunesData,
-  getSummonerMastery
+  getSummonerMastery,
+  getMatchHistoryDetails
 } from "@/lib/riot-server-api";
 import { Mastery, Match, RankedInfo, Summoner } from "@/lib/types";
 import { getStatsByChamp } from "@/lib/champions-api";
+import { RiotGameType } from "@/lib/types/riot.type";
 
 interface PlayerPageProps {
   params: Promise<{
@@ -32,7 +34,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
 
   let summoner: Summoner | null = null;
   let rankedData: RankedInfo[] = [];
-  let matches: Match[] = [];
+  let matches: RiotGameType[] = [];
   let error: string | null = null;
   let spellsData: SummonerSpellsData = {};
   let itemsData: ItemsData = {};
@@ -62,6 +64,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
     }
 
     const matchIds = await getMatchHistory(summoner.puuid, 10);
+    console.log('matches', await getMatchHistoryDetails(summoner.puuid, 10))
 
     const matchPromises = matchIds.map(id => getMatchDetails(id));
     matches = await Promise.all(matchPromises);

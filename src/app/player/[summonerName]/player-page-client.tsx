@@ -14,11 +14,12 @@ import {
 import { Summoner, RankedInfo, Match, ChampionStat } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import PlayerChampionsStats from "@/components/player-champions-stats";
+import { RiotGameType } from "@/lib/types/riot.type";
 
 interface PlayerPageClientProps {
   summoner: Summoner;
   rankedData: RankedInfo[];
-  initialMatches: Match[];
+  initialMatches: RiotGameType[];
   spellsData: SummonerSpellsData;
   itemsData: ItemsData;
   runesData: RunesData;
@@ -34,7 +35,7 @@ export default function PlayerPageClient({
   runesData,
   championStats
 }: PlayerPageClientProps) {
-  const [allMatches, setAllMatches] = useState<Match[]>(initialMatches);
+  const [allMatches, setAllMatches] = useState<RiotGameType[]>(initialMatches);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const handleLoadMore = async () => {
@@ -50,7 +51,7 @@ export default function PlayerPageClient({
         throw new Error('Failed to load matches');
       }
 
-      const newMatches: Match[] = await response.json();
+      const newMatches: RiotGameType[] = await response.json();
 
       if (newMatches && newMatches.length > 0) {
         setAllMatches(prev => [...prev, ...newMatches]);

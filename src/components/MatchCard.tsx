@@ -10,11 +10,12 @@ import {
 import ChampionInfo from "./ChampionInfo";
 import ItemsDisplay from "./ItemsDisplay";
 import TeamsList from "./TeamsList";
-import { Match, Summoner } from "@/lib/types";
+import { Game, Match, Summoner } from "@/lib/types";
 import { Card, CardContent } from "./ui/card";
+import { RiotGameType, RiotParticipantType } from "@/lib/types/riot.type";
 
 interface MatchCardProps {
-  match: Match;
+  match: RiotGameType;
   summoner: Summoner;
   spellsData: SummonerSpellsData;
   itemsData: ItemsData;
@@ -22,11 +23,12 @@ interface MatchCardProps {
 }
 
 export default function MatchCard({ match, summoner, spellsData, itemsData, runesData }: MatchCardProps) {
-  const playerData = match.info.participants.find(p => p.puuid === summoner.puuid);
+  console.log('match', match)
+  const playerData: RiotParticipantType = match.info.participants.find(p => p.puuid === summoner.puuid);
+  console.log('playerData', playerData)
 
   if (!playerData) return null;
 
-  const kda = calculateKDA(playerData.kills, playerData.deaths, playerData.assists);
   const items = [
     playerData.item0,
     playerData.item1,
@@ -36,12 +38,6 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
     playerData.item5,
     playerData.item6
   ];
-
-  const gameDurationMinutes = match.info.gameDuration / 60;
-  const totalCS = (playerData.totalMinionsKilled || 0) + (playerData.neutralMinionsKilled || 0);
-  const csPerMin = (totalCS / gameDurationMinutes).toFixed(1);
-  const damageFormatted = (playerData.totalDamageDealtToChampions / 1000).toFixed(1) + 'k';
-  const goldFormatted = (playerData.goldEarned / 1000).toFixed(1) + 'k';
 
   const roleMap: Record<string, string> = {
     'TOP': 'Top',
@@ -72,22 +68,22 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
             </div>
           </div>
 
-          <ChampionInfo
+          {/* <ChampionInfo
             playerData={playerData}
             spellsData={spellsData}
             runesData={runesData}
-          />
+          /> */}
 
           <div className="flex w-12 md:w-14 text-center">
             <div className="text-sm font-semibold">
-              {playerData.kills} / <span className="text-red-500">{playerData.deaths}</span> / {playerData.assists}
+              {playerData.kills} / <span className="text-warning">{playerData.deaths}</span> / {playerData.assists}
             </div>
             <div className="text-xs text-default-500">
-              {kda} KDA
+              {playerData.kda} KDA
             </div>
           </div>
 
-          <div className="hidden md:block flex-shrink-0 w-14 text-center">
+          {/*<div className="hidden md:block flex-shrink-0 w-14 text-center">
             <div className="text-sm font-medium">
               {totalCS}
             </div>
@@ -120,7 +116,7 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
               participants={match.info.participants}
               currentPlayerPuuid={summoner.puuid}
             />
-          </div>
+          </div> */}
 
         </div>
       </CardContent>

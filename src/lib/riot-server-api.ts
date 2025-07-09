@@ -1,5 +1,11 @@
-import { cachedChampions, getChampions } from "./champions-api";
-import { DataDragonSummonerSpell, DataDragonItem, DataDragonRuneTree, Account, Summoner, RankedInfo, Match, MatchParticipant, Champion, ChampionsResponse, Mastery } from "./types";
+import { TRPCError } from "@trpc/server";
+import { cachedChampions, getChampions, kda } from "./champions-api";
+import { DataDragonSummonerSpell, DataDragonItem, DataDragonRuneTree, Account, Summoner, RankedInfo, Match, MatchParticipant, Champion, ChampionsResponse, Mastery, GameNormal, GameArena, Game } from "./types";
+import { RiotGameSchema, RiotGameType } from "./types/riot.type";
+import { validateGameType } from "./validators/game-type.validator";
+import { augmentsData } from "./data/arguments";
+import { RuneGroup, RunePerk } from './types/riot.type'
+import z from "zod";
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 const PLATFORM_URL = 'https://euw1.api.riotgames.com';
@@ -11,6 +17,85 @@ export type RunesData = DataDragonRuneTree[];
 
 let lastRequestTime = 0;
 const MIN_REQUEST_INTERVAL = 50;
+
+type RuneGroupType = z.infer<typeof RuneGroup>
+type RunePerkType = z.infer<typeof RunePerk>
+
+const runeGroups: Record<RuneGroupType, string | null> = {
+  0: null, // empty state - arena game mode
+  8100: '7200_domination',
+  8000: '7201_precision',
+  8200: '7202_sorcery',
+  8300: '7203_whimsy',
+  8400: '7204_resolve',
+}
+
+const runePerks: Record<RunePerkType, string | null> = {
+  0: null, // empty state - arena game mode
+  8005: 'presstheattack',
+  8008: 'lethaltempo', //'temp'
+  8010: 'conqueror',
+  8009: null,
+  8014: null,
+  8017: null,
+  8021: 'fleetfootwork',
+  8105: null,
+  8106: null,
+  8112: 'electrocute',
+  8120: null,
+  8124: 'predator',
+  8128: 'darkharvest',
+  8126: null,
+  8134: null,
+  8135: null,
+  8136: null,
+  8138: null,
+  8139: null,
+  8143: null,
+  8210: null,
+  8214: 'summonaery',
+  8224: null,
+  8226: null,
+  8229: 'arcanecomet',
+  8230: 'phaserush',
+  8232: null,
+  8233: null,
+  8234: null,
+  8236: null,
+  8237: null,
+  8242: null,
+  8275: null,
+  8299: null,
+  8304: null,
+  8306: null,
+  8313: null,
+  8316: null,
+  8321: null,
+  8345: null,
+  8347: null,
+  8351: 'glacialaugment',
+  8352: null,
+  8360: 'unsealedspellbook',
+  8369: 'firststrike',
+  8401: null,
+  8410: null,
+  8429: null,
+  8437: 'graspoftheundying',
+  8439: 'veteranaftershock',
+  8444: null,
+  8446: null,
+  8451: null,
+  8453: null,
+  8463: null,
+  8465: 'guardian',
+  8473: null,
+  9101: null,
+  9103: null,
+  9104: null,
+  9105: null,
+  9111: null,
+  9923: 'hailofblades',
+}
 
 export function getErrorMessage(errorCode: string): string {
   const errorMessages: Record<string, string> = {
@@ -148,7 +233,31 @@ export async function getMatchHistory(puuid: string, count: number = 5, start: n
   return makeRiotRequest(url);
 }
 
-export async function getMatchDetails(matchId: string): Promise<Match> {
+export async function getMatchHistoryDetails(puuid: string, count: number = 10, start: number = 0): Promise<(GameNormal | GameArena)[]> {
+  try {
+    const url = `${REGIONAL_URL}/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}`;
+    const gamesIds: string[] = await makeRiotRequest(url);
+    console.log('games', gamesIds)
+    const games: RiotGameType[] = []
+    gamesIds.forEach(async gameId => {
+      games.push(await getMatchDetails(gameId))
+    })
+
+    const filteredGames = games.filter(game => game.info.queueId !== 1810 && game.info.queueId !== 1820)
+    const result = z.array(RiotGameSchema).safeParse(filteredGames)
+
+    if (!result.success) {
+      throw new TRPCError({ code: 'BAD_REQUEST', message: `Error parsing game data: ${JSON.stringify(result.error.errors)}` })
+    }
+
+    return result.data.map(game => formatGame(game, puuid))
+  } catch (error) {
+    console.log('error', error)
+    throw new TRPCError({ code: 'BAD_REQUEST', message: 'Problem with Riot Games game endpoint' })
+  }
+}
+
+export async function getMatchDetails(matchId: string): Promise<RiotGameType> {
   const url = `${REGIONAL_URL}/lol/match/v5/matches/${matchId}`;
   return makeRiotRequest(url);
 }
@@ -549,4 +658,126 @@ export async function getItemInfo(itemId: number): Promise<{ name: string; descr
   } catch {
     return { name: 'Unknown Item', description: 'Information not available' };
   }
+}
+
+/**
+    * ## Format Game
+    * Format the raw data of a game to our custom schema
+    * @param rawGame The raw data of the game as Riot returns
+    * @returns The info parsed
+    */
+export function formatGame(rawGame: RiotGameType, puuid: string): GameNormal | GameArena {
+  const idx = rawGame.metadata.participants.indexOf(puuid)
+  const participant = rawGame.info.participants[idx]
+  const [initialTeamMate, lastTeamMate] = idx > 4 ? [5, 9] : [0, 4]
+  const perks = participant?.perks.styles[0]
+
+  if (!participant || !perks) {
+    this.LOGGER.error(`Error formatting game: ${rawGame.metadata.matchId}`)
+    throw new TRPCError({ code: "BAD_REQUEST", message: 'Problem with Riot Games game endpoint' })
+  }
+
+  const teamKills: number = rawGame.info.participants
+    .slice(initialTeamMate, lastTeamMate + 1)
+    .map(p => p.kills)
+    .reduce((acc, val) => acc + val)
+
+  const base_game: Game = {
+    matchId: rawGame.metadata.matchId,
+    win: participant.win,
+    participantNumber: idx,
+    gameCreation: rawGame.info.gameCreation,
+    gameDuration: rawGame.info.gameDuration,
+    gameMode: validateGameType(rawGame.info.queueId),
+    teamPosition: participant.teamPosition,
+    isEarlySurrender: participant.gameEndedInEarlySurrender,
+    visionScore: participant.visionScore,
+    champLevel: participant.champLevel,
+    championName: participant.championName,
+    kills: participant.kills,
+    deaths: participant.deaths,
+    assists: participant.assists,
+    doubleKills: participant.doubleKills,
+    tripleKills: participant.tripleKills,
+    quadraKills: participant.quadraKills,
+    pentaKills: participant.pentaKills,
+    kda: kda(participant.kills, participant.deaths, participant.assists),
+    cs: participant.neutralMinionsKilled + participant.totalMinionsKilled,
+    gold: participant.goldEarned,
+    ward: participant.item6 || 2052,
+    killParticipation: (participant.kills + participant.assists) / teamKills,
+    damageDealt: participant.totalDamageDealtToChampions,
+    damageTaken: participant.totalDamageTaken,
+    items: [participant.item0, participant.item1, participant.item2, participant.item3, participant.item4, participant.item5],
+    participants: rawGame.info.participants.map(participant => ({
+      summonerName: participant.summonerName,
+      championName: participant.championName,
+      riotIdGameName: participant.riotIdGameName ?? participant.summonerName,
+      riotIdTagLine: String(participant.riotIdTagline),
+    })),
+  }
+
+  if (rawGame.info.queueId === 1700) {
+    // RETURN ARENA GAME
+    return {
+      ...base_game,
+      augments: [participant.playerAugment1, participant.playerAugment2, participant.playerAugment3, participant.playerAugment4]
+        .filter(Boolean) //Remove 0s
+        .map(id => {
+          const augment = augmentsData[id ?? 0]
+
+          if (!augment) {
+            this.LOGGER.error(`Missing AugmentID ${id} in augmentsData`)
+            throw new TRPCError({ code: 'BAD_REQUEST', message: 'Problem with Riot Games game endpoint' })
+          }
+          return augment
+        }),
+      placement: participant.placement ?? 0,
+      subteamPlacement: participant.subteamPlacement ?? 0,
+    }
+  }
+
+  // RETURN NORMAL (NO ARENA) GAME
+  return {
+    ...base_game,
+    spells: [participant.summoner1Id, participant.summoner2Id],
+    perks: {
+      primary: runePerkUrl(participant.perks.styles[0]!.style, participant.perks.styles[0]!.selections[0]!.perk),
+      secondary: runeGroupUrl(participant.perks.styles[1]!.style),
+    },
+  }
+}
+
+/**
+ * @param runeGroupId The rune group ID
+ * @returns The image URL for the Rune Group
+ */
+export const runeGroupUrl = (runeGroupId: RuneGroupType): string | null =>
+  !runeGroups[runeGroupId]
+    ? null
+    : `https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/${runeGroups[runeGroupId]}.png`
+
+/**
+ * @param runeId The rune group ID
+ * @param perkId The rune perk ID
+ * @returns The image URL for the Rune Perk
+ */
+export function runePerkUrl(runeGroupId: RuneGroupType, runePerkId: RunePerkType): string | null {
+  // The Rune Group needs this parse
+  const group = runeGroups[runeGroupId]
+  const perk = runePerks[runePerkId]
+
+  // Arena mode -> no runes -> no image
+  if (!group || !perk) {
+    return null
+  }
+
+  const runeGroup = runeGroupId === 8300 ? 'inspiration' : group.split('_')[1]
+
+  // There is a special case for Lethal Tempo
+  const exception = runePerkId === 8008 ? 'temp' : ''
+
+  return `https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/${runeGroup}/${perk}/${perk}${exception}.png`
+
+  //return `https://ddragon.canisback.com/img/perk-images/Styles/${runeGroup}/${perk}/${perk}${exception}.png`??
 }

@@ -1,5 +1,6 @@
 import { calculateKDA } from './riot-server-api';
 import { ChampionsResponse, ChampionDetailResponse, Champion, ChampionDetail, Match, Summoner } from './types';
+import { RiotGameType } from './types/riot.type';
 
 const DDragon_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn';
 const VERSIONS_API = 'https://ddragon.leagueoflegends.com/api/versions.json';
@@ -148,7 +149,7 @@ export async function getCurrentVersion(): Promise<string> {
      * @param games The games to build the stats from
      * @returns The champs stats
      */
-export async function getStatsByChamp(summoner: Summoner, games: Match[]) {
+export async function getStatsByChamp(summoner: Summoner, games: RiotGameType[]) {
   // Index to accumulate the stats
   const indexByName: Record<string, any> = {}
 
@@ -175,7 +176,7 @@ export async function getStatsByChamp(summoner: Summoner, games: Match[]) {
         csMin: perMin((playerData.totalMinionsKilled || 0) + (playerData.neutralMinionsKilled || 0)),
         kills: playerData.kills,
         totalKills: totalKills,
-        killParticipation: Number((((playerData.kills) / totalKills) * 100).toFixed(2)),
+        killParticipation: Number((((playerData.kills + playerData.assists) / totalKills) * 100).toFixed(2)),
       }
       continue
     }
@@ -191,7 +192,7 @@ export async function getStatsByChamp(summoner: Summoner, games: Match[]) {
     // champ.damageTaken = avg(champ.damageTaken, game.damageTaken, champ.games)
     champ.kills = playerData.kills
     champ.totalKills = totalKills
-    champ.killParticipation = Number((((playerData.kills) / totalKills) * 100).toFixed(2))
+    champ.killParticipation = Number((((playerData.kills + playerData.assists) / totalKills) * 100).toFixed(2))
 
     // This needs to be done after the kda calculation, because it depends on it
     champ.games += 1
@@ -203,180 +204,15 @@ export async function getStatsByChamp(summoner: Summoner, games: Match[]) {
     .sort((a, b) => b.games - a.games)
 }
 
-//  /**
-//      * ## Format Game
-//      * Format the raw data of a game to our custom schema
-//      * @param rawGame The raw data of the game as Riot returns
-//      * @returns The info parsed
-//      */
-//     formatGame(rawGame: RiotGameType, puuid: string): GameNormalDto | GameArenaDto {
-//         const idx = rawGame.metadata.participants.indexOf(puuid)
-//         const participant = rawGame.info.participants[idx]
-//         const [initialTeamMate, lastTeamMate] = idx > 4 ? [5, 9] : [0, 4]
-//         const perks = participant?.perks.styles[0]
-
-//         if (!participant || !perks) {
-//             this.LOGGER.error(`Error formatting game: ${rawGame.metadata.matchId}`)
-//             throw new InternalServerErrorException('Problem with Riot Games game endpoint')
-//         }
-
-//         const teamKills: number = rawGame.info.participants
-//             .slice(initialTeamMate, lastTeamMate + 1)
-//             .map(p => p.kills)
-//             .reduce((acc, val) => acc + val)
-
-//         const base_game: GameDto = {
-//             matchId: rawGame.metadata.matchId,
-//             win: participant.win,
-//             participantNumber: idx,
-//             gameCreation: rawGame.info.gameCreation,
-//             gameDuration: rawGame.info.gameDuration,
-//             gameMode: validateGameType(rawGame.info.queueId),
-//             teamPosition: participant.teamPosition,
-//             isEarlySurrender: participant.gameEndedInEarlySurrender,
-//             visionScore: participant.visionScore,
-//             champLevel: participant.champLevel,
-//             championName: participant.championName,
-//             kills: participant.kills,
-//             deaths: participant.deaths,
-//             assists: participant.assists,
-//             doubleKills: participant.doubleKills,
-//             tripleKills: participant.tripleKills,
-//             quadraKills: participant.quadraKills,
-//             pentaKills: participant.pentaKills,
-//             cs: participant.neutralMinionsKilled + participant.totalMinionsKilled,
-//             gold: participant.goldEarned,
-//             ward: participant.item6 || 2052,
-//             killParticipation: (participant.kills + participant.assists) / teamKills,
-//             damageDealt: participant.totalDamageDealtToChampions,
-//             damageTaken: participant.totalDamageTaken,
-//             items: [participant.item0, participant.item1, participant.item2, participant.item3, participant.item4, participant.item5],
-//             participants: rawGame.info.participants.map(participant => ({
-//                 summonerName: participant.summonerName,
-//                 championName: participant.championName,
-//                 riotIdGameName: participant.riotIdGameName ?? participant.summonerName,
-//                 riotIdTagLine: String(participant.riotIdTagline),
-//             })),
-//         }
-
-//         if (rawGame.info.queueId === 1700) {
-//             // RETURN ARENA GAME
-//             return {
-//                 ...base_game,
-//                 augments: [participant.playerAugment1, participant.playerAugment2, participant.playerAugment3, participant.playerAugment4]
-//                     .filter(Boolean) //Remove 0s
-//                     .map(id => {
-//                         const augment = augmentsData[id ?? 0]
-
-//                         if (!augment) {
-//                             this.LOGGER.error(`Missing AugmentID ${id} in augmentsData`)
-//                             throw new InternalServerErrorException('Problem with Riot Games game endpoint')
-//                         }
-//                         return augment
-//                     }),
-//                 placement: participant.placement ?? 0,
-//                 subteamPlacement: participant.subteamPlacement ?? 0,
-//             }
-//         }
-
-//         // RETURN NORMAL (NO ARENA) GAME
-//         return {
-//             ...base_game,
-//             spells: [participant.summoner1Id, participant.summoner2Id],
-//             perks: {
-//                 primary: runePerkUrl(participant.perks.styles[0]!.style, participant.perks.styles[0]!.selections[0]!.perk),
-//                 secondary: runeGroupUrl(participant.perks.styles[1]!.style),
-//             },
-//         }
-//     }
-
-//     /**
-//      * ## Format GameDetail
-//      * Format the raw data of a game to our custom schema
-//      * @param rawGame The raw data of the game as Riot returns
-//      * @returns The info parsed
-//      */
-//     export async function formatGameDetail(rawGame: Match, puuid: string) {
-//         const idx = rawGame.metadata.participants.indexOf(puuid)
-
-//         return {
-//             matchId: rawGame.metadata.matchId,
-//             gameCreation: rawGame.info.gameCreation,
-//             gameDuration: rawGame.info.gameDuration,
-//             participantNumber: idx,
-//             gameMode: rawGame.info.gameMode,
-//             teams: rawGame.info.teams.map(team => ({
-//                 teamId: team.teamId,
-//                 win: team.win,
-//                 bans: team.bans.map(ban => ({
-//                     pickTurn: ban.pickTurn,
-//                     championId:
-//                         ban.championId === -1
-//                             ? null
-//                             : `http://ddragon.leagueoflegends.com/cdn/${this.version}/img/champion/${this.champions[ban.championId]}.png`,
-//                 })),
-//                 objectives: Object.entries(team.objectives).map(([type, value]) => ({ type, ...value })),
-//             })),
-
-//             participants: rawGame.info.participants
-//                 .map(participant => ({
-//                     summonerName: participant.summonerName,
-//                     riotIdGameName: participant.riotIdGameName ?? participant.summonerName,
-//                     riotIdTagLine: String(participant.riotIdTagline),
-//                     teamPosition: participant.teamPosition,
-//                     isEarlySurrender: participant.gameEndedInEarlySurrender,
-//                     win: participant.win,
-//                     visionScore: participant.visionScore,
-//                     champ: {
-//                         champLevel: participant.champLevel,
-//                         championName: participant.championName,
-//                         largestMultiKill: participant.largestMultiKill,
-//                         damageDealt: participant.totalDamageDealtToChampions,
-//                         damageTaken: participant.totalDamageTaken,
-//                     },
-//                     kills: participant.kills,
-//                     deaths: participant.deaths,
-//                     assists: participant.assists,
-//                     multiKill: {
-//                         doubles: participant.doubleKills,
-//                         triples: participant.tripleKills,
-//                         quadras: participant.quadraKills,
-//                         pentas: participant.pentaKills,
-//                     },
-//                     gold: participant.goldEarned,
-//                     placement: participant.placement ?? 0,
-//                     cs: participant.neutralMinionsKilled + participant.totalMinionsKilled,
-//                     ward: participant.item6 || 2052,
-//                     items: [
-//                         participant.item0,
-//                         participant.item1,
-//                         participant.item2,
-//                         participant.item3,
-//                         participant.item4,
-//                         participant.item5,
-//                     ],
-//                     spells: [participant.summoner1Id, participant.summoner2Id],
-//                     perks: {
-//                         primary: runePerkUrl(participant.perks.styles[0]!.style, participant.perks.styles[0]!.selections[0]!.perk),
-//                         secondary: runeGroupUrl(participant.perks.styles[1]!.style),
-//                     },
-//                     augments: [
-//                         participant.playerAugment1,
-//                         participant.playerAugment2,
-//                         participant.playerAugment3,
-//                         participant.playerAugment4,
-//                     ]
-//                         .filter(Boolean) // Remove 0s
-//                         .map(id => {
-//                             const augment = augmentsData[id ?? 0]
-
-//                             if (!augment) {
-//                                 this.LOGGER.error(`Missing AugmentID ${id} in augmentsData`)
-//                                 throw new InternalServerErrorException('Problem with Riot Games game endpoint')
-//                             }
-//                             return augment
-//                         }),
-//                 }))
-//                 .sort((a, b) => a.placement - b.placement),
-//         }
-//     }
+/**
+ * ## Calculates the kda
+ * (kills + assists) / deaths
+ *
+ * @param kills The number of kills
+ * @param deaths The number of deaths
+ * @param assists The number of assists
+ * @returns The kda value
+ */
+export function kda(kills: number, deaths: number, assists: number) {
+  return parseFloat((deaths ? (kills + assists) / deaths : kills + assists).toFixed(2))
+}

@@ -4,9 +4,10 @@ import { Match } from "@/lib/types";
 import { Target, Coins, Swords } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
+import { RiotGameType } from "@/lib/types/riot.type";
 
 interface PlayerStatsProps {
-  matches: Match[];
+  matches: RiotGameType[];
   playerPuuid: string;
 }
 

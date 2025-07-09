@@ -23,12 +23,22 @@ export default function PlayerChampionsStats({ championStats }: ChampionStatsPro
 
             <CardContent className="p-6">
                 <div className="grid grid-cols-4">
-                    <div></div>
-
-                    <div>
-                        {championStats.map((cs) => {
+                    <div className="flex flex-col gap-2">
+                        {championStats.map((cs, index) => {
                             return (
-                                <Progress value={cs.killParticipation} className="border" />
+                                <span key={index}>{cs.championName}</span>
+                            )
+                        })}
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                        <span>Kill Participation</span>
+                        {championStats.map((cs, index) => {
+                            return (
+                                <div key={index} className="flex flex-col items-center">
+                                    <span>{cs.killParticipation}%</span>
+                                    <Progress value={cs.killParticipation} className="border" />
+                                </div>
                             )
                         })}
                     </div>

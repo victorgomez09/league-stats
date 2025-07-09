@@ -1,3 +1,5 @@
+import z from "zod";
+
 export interface Champion {
   id: string;
   key: string;
@@ -280,4 +282,67 @@ export interface ChampionStat {
   killParticipation: number
   kills: number
   totalKills: number
+}
+
+interface ParticipantTitle {
+  summonerName: string
+  championName: string
+  riotIdGameName: string
+  riotIdTagLine: string
+}
+
+export interface Game {
+  matchId: string
+  gameCreation: number
+  gameDuration: number
+  win: boolean
+  gameMode: string
+  participantNumber: number
+  teamPosition: string
+  isEarlySurrender: boolean
+  visionScore: number
+  champLevel: number
+  championName: string
+  kills: number
+  deaths: number
+  assists: number
+  doubleKills: number
+  tripleKills: number
+  quadraKills: number
+  pentaKills: number
+  kda: number
+  gold: number
+  cs: number
+  ward: number
+  killParticipation: number
+  damageDealt: number
+  damageTaken: number
+  items: Array<number>
+  participants: ParticipantTitle[]
+}
+
+export interface Augment {
+  description: string
+  displayName: string
+  iconLarge: string
+  iconSmall: string
+  id: number
+  name: string
+  tooltip: string
+}
+
+export interface Perks {
+  primary: string | null
+  secondary: string | null
+}
+
+export interface GameNormal extends Game {
+  spells: Array<number>
+  perks: Perks
+}
+
+export interface GameArena extends Game {
+  augments: Array<Augment>
+  placement: number
+  subteamPlacement: number
 }

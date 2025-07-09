@@ -13,20 +13,20 @@ export default function PlayerNotFound({ error, title = "Player not found" }: Pl
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link 
-          href="/player" 
+        <Link
+          href="/player"
           className="inline-flex items-center gap-2 text-primary hover:underline"
         >
           <ArrowLeft className="w-4 h-4" />
-          Voltar para pesquisa
+          Back
         </Link>
       </div>
-      
+
       <Card>
         <CardBody className="p-6">
           <div className="text-center">
             <Chip color="danger" variant="flat" className="mb-4">
-              Erro
+              Error
             </Chip>
             <h3 className="text-lg font-semibold mb-2">{title}</h3>
             {error && (

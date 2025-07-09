@@ -9,9 +9,10 @@ import { Match, Summoner } from "@/lib/types";
 import { Target } from "lucide-react";
 import MatchCard from "./MatchCard";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { RiotGameType } from "@/lib/types/riot.type";
 
 interface MatchHistoryProps {
-  matches: Match[];
+  matches: RiotGameType[];
   summoner: Summoner;
   spellsData: SummonerSpellsData;
   itemsData: ItemsData;

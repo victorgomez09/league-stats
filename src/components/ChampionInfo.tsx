@@ -12,11 +12,11 @@ import {
   type SummonerSpellsData,
   type RunesData,
 } from "@/lib/riot-server-api";
-import { MatchParticipant } from "@/lib/types";
+import { Game } from "@/lib/types";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 
 interface ChampionInfoProps {
-  playerData: MatchParticipant;
+  playerData: Game;
   spellsData: SummonerSpellsData;
   runesData: RunesData;
 }
@@ -108,23 +108,23 @@ export default function ChampionInfo({ playerData, spellsData, runesData }: Cham
           <Tooltip>
             <TooltipTrigger asChild>
               <div className="w-5 h-5 flex-shrink-0">
-                <Image
-                  src={getSummonerSpellImageUrl(playerData.summoner1Id)}
+                {/* <Image
+                  src={getSummonerSpellImageUrl(playerData.)}
                   alt="Spell 1"
                   className="w-5 h-5 rounded cursor-help object-cover"
                   width={20}
                   height={20}
                   style={{ aspectRatio: '1/1' }}
-                />
+                /> */}
               </div>
             </TooltipTrigger>
-            <TooltipContent>{getSummonerSpellName(playerData.summoner1Id)}</TooltipContent>
+            {/* <TooltipContent>{getSummonerSpellName(playerData.)}</TooltipContent> */}
           </Tooltip>
 
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="w-5 h-5 flex-shrink-0">
-                <Image
+              {/*<div className="w-5 h-5 flex-shrink-0">
+                 <Image
                   src={getSummonerSpellImageUrl(playerData.summoner2Id)}
                   alt="Spell 2"
                   className="w-5 h-5 rounded cursor-help object-cover"
@@ -132,14 +132,14 @@ export default function ChampionInfo({ playerData, spellsData, runesData }: Cham
                   height={20}
                   style={{ aspectRatio: '1/1' }}
                 />
-              </div>
+              </div> */}
             </TooltipTrigger>
-            <TooltipContent>{getSummonerSpellName(playerData.summoner2Id)}</TooltipContent>
+            {/* <TooltipContent>{getSummonerSpellName(playerData.summoner2Id)}</TooltipContent> */}
           </Tooltip>
         </div>
 
         <div className="flex flex-col gap-0.5">
-          {(() => {
+          {/* {(() => {
             const primaryRuneId = getPrimaryRune(playerData);
             const secondaryStyleId = getSecondaryRuneStyle(playerData);
 
@@ -224,7 +224,7 @@ export default function ChampionInfo({ playerData, spellsData, runesData }: Cham
                 </Tooltip>
               </>
             );
-          })()}
+          })()} */}
         </div>
       </div>
     </TooltipProvider>
