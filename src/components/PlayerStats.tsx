@@ -1,8 +1,9 @@
 "use client";
 
-import { Card, CardBody, CardHeader, Progress } from "@heroui/react";
+import { Match } from "@/lib/types";
 import { Target, Coins, Swords } from "lucide-react";
-import { type Match } from "@/lib/riot-server-api";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Progress } from "./ui/progress";
 
 interface PlayerStatsProps {
   matches: Match[];
@@ -85,32 +86,37 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       {/* Win Rate Card */}
       <Card>
-        <CardBody className="p-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-default-500">Win Rate</span>
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between">
+            <span>Win Rate</span>
             <Target className="w-4 h-4 text-primary" />
-          </div>
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent>
           <div className="text-2xl font-bold text-primary mb-2">
             {winRate.toFixed(1)}%
           </div>
           <Progress
             value={winRate}
             color={winRate >= 50 ? "success" : "danger"}
-            className="mb-2"
+            className="mb-2 border"
           />
           <div className="text-xs text-default-500">
             {stats.wins}V {stats.totalGames - stats.wins}D
           </div>
-        </CardBody>
+        </CardContent>
       </Card>
 
       {/* KDA Card */}
       <Card>
-        <CardBody className="p-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-default-500">Average KDA</span>
-            <Swords className="w-4 h-4 text-orange-500" />
-          </div>
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between">
+            <span>Average KDA</span>
+            <Swords className="w-4 h-4 text-primary" />
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
           <div className="text-2xl font-bold mb-2">
             {avgKDA.toFixed(2)}
           </div>
@@ -120,16 +126,19 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
           <div className="text-xs text-default-500 mt-1">
             Per match
           </div>
-        </CardBody>
+        </CardContent>
       </Card>
 
       {/* CS/min Card */}
       <Card>
-        <CardBody className="p-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-default-500">CS/min</span>
-            <Coins className="w-4 h-4 text-yellow-500" />
-          </div>
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between">
+            <span>CS/min</span>
+            <Coins className="w-4 h-4 text-primary" />
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent>
           <div className="text-2xl font-bold mb-2">
             {avgCSPerMin.toFixed(1)}
           </div>
@@ -139,15 +148,16 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
           <div className="text-xs text-default-500 mt-1">
             {(avgDamage / 1000).toFixed(1)}k damage/match
           </div>
-        </CardBody>
+        </CardContent>
       </Card>
 
       {/* Top Champions Card */}
       <Card>
-        <CardHeader className="pb-2 pt-4 px-4">
-          <span className="text-sm text-default-500">Top Champions</span>
+        <CardHeader>
+          <CardTitle>Top Champions</CardTitle>
         </CardHeader>
-        <CardBody className="pt-2 px-4 pb-4">
+
+        <CardContent className="pt-2 px-4 pb-4">
           {topChampions.map(([champName, champStats]) => {
             const champWinRate = (champStats.wins / champStats.games) * 100;
             const champKDA = champStats.deaths > 0
@@ -171,7 +181,7 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
               </div>
             );
           })}
-        </CardBody>
+        </CardContent>
       </Card>
     </div>
   );

@@ -22,6 +22,18 @@ const nextConfig = {
     }
     return config;
   },
+  // Images
+  images: {
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: 'ddragon.leagueoflegends.com',
+      port: '',
+    }, {
+      protocol: 'https',
+      hostname: 'static.bigbrain.gg',
+      port: '',
+    }]
+  },
 };
 
 module.exports = nextConfig;

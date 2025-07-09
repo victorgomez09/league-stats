@@ -1,9 +1,6 @@
 "use client";
 
-import { Card, CardBody } from "@heroui/react";
 import {
-  Match,
-  Summoner,
   calculateKDA,
   formatGameDuration,
   type SummonerSpellsData,
@@ -13,6 +10,8 @@ import {
 import ChampionInfo from "./ChampionInfo";
 import ItemsDisplay from "./ItemsDisplay";
 import TeamsList from "./TeamsList";
+import { Match, Summoner } from "@/lib/types";
+import { Card, CardContent } from "./ui/card";
 
 interface MatchCardProps {
   match: Match;
@@ -54,8 +53,8 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
   const displayRole = roleMap[playerData.role] || playerData.lane || 'N/A';
 
   return (
-    <Card className={`border-l-4 ${playerData.win ? 'border-l-green-500' : 'border-l-red-500'} overflow-hidden`}>
-      <CardBody className="p-2 overflow-hidden">
+    <Card className={`border-l-2 ${playerData.win ? 'border-l-green-500' : 'border-l-red-500'} overflow-hidden bg-background`}>
+      <CardContent className="p-2 overflow-hidden">
         <div className="flex items-center gap-1 md:gap-2 min-w-0">
 
           <div className="w-16 md:w-20 flex-shrink-0 text-center">
@@ -79,7 +78,7 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
             runesData={runesData}
           />
 
-          <div className="flex-shrink-0 w-12 md:w-14 text-center">
+          <div className="flex w-12 md:w-14 text-center">
             <div className="text-sm font-semibold">
               {playerData.kills} / <span className="text-red-500">{playerData.deaths}</span> / {playerData.assists}
             </div>
@@ -124,7 +123,7 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
           </div>
 
         </div>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }

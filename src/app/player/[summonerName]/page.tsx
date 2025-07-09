@@ -12,15 +12,12 @@ import {
   getItemsData,
   getRunesData,
   getErrorMessage,
-  type Summoner,
-  type RankedInfo,
-  type Match,
   type SummonerSpellsData,
   type ItemsData,
   type RunesData,
   getSummonerMastery
 } from "@/lib/riot-server-api";
-import { Mastery } from "@/lib/types";
+import { Mastery, Match, RankedInfo, Summoner } from "@/lib/types";
 
 interface PlayerPageProps {
   params: Promise<{

@@ -5,12 +5,9 @@ import { Champion } from "@/lib/types";
 import { getChampions, getCurrentVersion, getChampionImageUrl } from "@/lib/champions-api";
 import ChampionCard from "@/components/ChampionCard";
 import { Search, Sparkles, BarChart3, Target } from "lucide-react";
-import {
-  Button,
-  Input,
-  Chip,
-  Spinner
-} from "@heroui/react";
+import { Chip, Spinner } from "@heroui/react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 export default function HomePage() {
   const [champions, setChampions] = useState<Champion[]>([]);
@@ -81,34 +78,20 @@ export default function HomePage() {
 
           <div className="hidden md:flex items-center gap-3">
             <Input
-              classNames={{
-                base: "w-64",
-                inputWrapper: "h-9 bg-default-100/50 border-default-200",
-              }}
               placeholder="Search champion..."
-              size="sm"
               type="search"
-              variant="bordered"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              startContent={<Search className="w-4 h-4 text-default-400" />}
             />
           </div>
         </div>
 
         <div className="md:hidden mb-4">
           <Input
-            classNames={{
-              base: "w-full",
-              inputWrapper: "h-10 bg-default-100/50 border-default-200",
-            }}
             placeholder="Search champion..."
-            size="sm"
             type="search"
-            variant="bordered"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            startContent={<Search className="w-4 h-4 text-default-400" />}
           />
         </div>
 
@@ -141,7 +124,7 @@ export default function HomePage() {
         <div className="text-center py-12">
           <div className="max-w-md mx-auto">
             <Chip color="warning" variant="flat" className="mb-4">
-              Nenhum resultado
+              No data
             </Chip>
             <h3 className="text-lg font-semibold mb-2">No champions found</h3>
             <p className="text-sm text-default-500 mb-4">
@@ -149,9 +132,9 @@ export default function HomePage() {
             </p>
             <Button
               color="primary"
-              variant="bordered"
+              variant="outline"
               size="sm"
-              onPress={() => setSearchTerm("")}
+              onClick={() => setSearchTerm("")}
             >
               Limpar busca
             </Button>
@@ -169,8 +152,8 @@ export default function HomePage() {
             <p className="text-sm text-default-500 mb-4">
               Check your internet connection and try again.
             </p>
-            <Button color="primary" variant="bordered" size="sm">
-              Recarregar
+            <Button color="primary" variant="outline" size="sm">
+              Reload
             </Button>
           </div>
         </div>

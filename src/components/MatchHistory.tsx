@@ -1,15 +1,14 @@
 "use client";
 
-import { Card, CardBody } from "@heroui/react";
-import { Target } from "lucide-react";
 import {
-  Match,
-  Summoner,
-  type SummonerSpellsData,
   type ItemsData,
-  type RunesData
+  type RunesData,
+  type SummonerSpellsData
 } from "@/lib/riot-server-api";
+import { Match, Summoner } from "@/lib/types";
+import { Target } from "lucide-react";
 import MatchCard from "./MatchCard";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface MatchHistoryProps {
   matches: Match[];
@@ -22,12 +21,14 @@ interface MatchHistoryProps {
 export default function MatchHistory({ matches, summoner, spellsData, itemsData, runesData }: MatchHistoryProps) {
   return (
     <Card>
-      <CardBody className="p-6">
-        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
           <Target className="w-5 h-5" />
           Match History
-        </h3>
+        </CardTitle>
+      </CardHeader>
 
+      <CardContent>
         {matches.length > 0 ? (
           <div className="space-y-3">
             {matches.map((match) => (
@@ -46,7 +47,7 @@ export default function MatchHistory({ matches, summoner, spellsData, itemsData,
             <p className="text-default-500">Nenhuma partida encontrada</p>
           </div>
         )}
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }

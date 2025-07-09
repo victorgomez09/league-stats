@@ -1,36 +1,53 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Card, 
-  CardBody, 
-  Input, 
-  Button
-} from "@heroui/react";
 import { Search, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import { Card, CardContent } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
+import { Button } from "@heroui/react";
+
+const formSchema = z
+  .object({
+    summonerName: z.string().min(1, {
+      message: "Summoner name is required",
+    }),
+  });
+
+type formType = z.infer<typeof formSchema>;
 
 export default function PlayerPage() {
-  const [summonerName, setSummonerName] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const searchPlayer = () => {
-    const trimmedName = summonerName.trim();
+  const form = useForm<formType>({
+    defaultValues: {
+      summonerName: "",
+    },
+    resolver: zodResolver(formSchema),
+  });
+
+
+  const onSubmit = async (values: { summonerName: string }) => {
+    const trimmedName = values.summonerName.trim();
     if (!trimmedName || loading) return;
-    
+
     setLoading(true);
-    
+
     const url = `/player/${encodeURIComponent(trimmedName)}`;
     router.push(url);
   };
-  
+
 
   return (
     <div className="min-h-screen">
       <Navbar />
-      
+
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
@@ -42,38 +59,42 @@ export default function PlayerPage() {
         </div>
 
         <Card className="mb-8">
-          <CardBody className="p-6">
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                searchPlayer();
-              }}
-              className="flex gap-4 items-end"
-            >
-              <Input
-                label="Riot ID or Summoner Name"
-                placeholder="Ex: kami#BR1 ou mrkirito13#365"
-                value={summonerName}
-                onChange={(e) => setSummonerName(e.target.value)}
-                startContent={<User className="w-4 h-4 text-default-400" />}
-                className="flex-1"
-                isDisabled={loading}
-                autoFocus
-              />
-              <Button
-                type="submit"
-                color="primary"
-                isLoading={loading}
-                isDisabled={!summonerName.trim()}
-                startContent={!loading ? <Search className="w-4 h-4" /> : undefined}
+          <CardContent className="p-6">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="grid gap-4"
               >
-                {loading ? "Searching..." : "Search"}
-              </Button>
-            </form>
-          </CardBody>
+                <div className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="summonerName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Riot ID or Summoner Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Ex: kami#BR1 ou mrkirito13#365" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  color="primary"
+                  isLoading={loading}
+                  isDisabled={!form.formState.errors}
+                  startContent={!loading ? <Search className="w-4 h-4" /> : undefined}
+                >
+                  {loading ? "Searching..." : "Search"}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
         </Card>
 
       </main>
-    </div>
+    </div >
   );
 }

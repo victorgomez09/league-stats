@@ -75,7 +75,7 @@ export async function getChampionById(id: string): Promise<ChampionDetail | null
   try {
     const version = await getLatestVersion();
     const response = await fetch(
-      `${DDragon_BASE_URL}/${version}/data/pt_BR/champion/${id}.json`,
+      `${DDragon_BASE_URL}/${version}/data/en_US/champion/${id}.json`,
       {
         ...(typeof window === 'undefined' ? { next: { revalidate: 3600 } } : {})
       }

@@ -1,9 +1,12 @@
 "use client";
 
-import { Card, CardBody, Chip, Progress, Image } from "@heroui/react";
-import { Trophy } from "lucide-react";
-import { Summoner, RankedInfo } from "@/lib/riot-server-api";
 import { getProfileIconUrl, getRankedEmblemUrl } from "@/lib/riot-server-api";
+import { RankedInfo, Summoner } from "@/lib/types";
+import { Trophy } from "lucide-react";
+import Image from 'next/image';
+import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
+import { Progress } from "./ui/progress";
 
 interface PlayerProfileProps {
   summoner: Summoner;
@@ -15,23 +18,23 @@ export default function PlayerProfile({ summoner, rankedData }: PlayerProfilePro
     return rankedData.find(r => r.queueType === "RANKED_SOLO_5x5");
   };
 
-  console.log('getProfileIconUrl(summoner.profileIconId)', getProfileIconUrl(summoner.profileIconId))
-
   return (
     <Card>
-      <CardBody className="p-6">
+      <CardContent className="p-6">
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <Image
               src={getProfileIconUrl(summoner.profileIconId)}
               alt="Profile Icon"
               className="w-20 h-20 rounded-full"
+              width={64}
+              height={64}
             />
           </div>
           <h2 className="text-xl font-bold mb-1">{summoner.name}</h2>
-          <Chip color="primary" variant="flat" className="mb-4">
+          <Badge color="primary" variant="default" className="mb-4">
             Level {summoner.summonerLevel}
-          </Chip>
+          </Badge>
 
           {getSoloQueueData() && (
             <div className="mt-6">
@@ -70,7 +73,7 @@ export default function PlayerProfile({ summoner, rankedData }: PlayerProfilePro
                         <span>Wins: {soloQ.wins}</span>
                         <span>Losses: {soloQ.losses}</span>
                       </div>
-                      <Progress value={winRate} color="primary" />
+                      <Progress value={winRate} color="primary" className="border" />
                       <div className="text-center text-sm">
                         {winRate}% win rate
                       </div>
@@ -81,7 +84,7 @@ export default function PlayerProfile({ summoner, rankedData }: PlayerProfilePro
             </div>
           )}
         </div>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }

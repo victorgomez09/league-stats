@@ -448,7 +448,7 @@ export async function getSummonerSpellsData(): Promise<SummonerSpellsData> {
 
   try {
     const version = await getLatestVersion();
-    const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/pt_BR/summoner.json`);
+    const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/summoner.json`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch summoner spells');
@@ -473,7 +473,7 @@ export async function getItemsData(): Promise<ItemsData> {
 
   try {
     const version = await getLatestVersion();
-    const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/pt_BR/item.json`);
+    const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/item.json`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch items');
@@ -515,7 +515,7 @@ export async function getRunesData(): Promise<RunesData> {
 
   try {
     const version = await getLatestVersion();
-    const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/pt_BR/runesReforged.json`);
+    const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch runes');

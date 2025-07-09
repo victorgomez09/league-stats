@@ -1,20 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@heroui/react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
 import PlayerProfile from "@/components/PlayerProfile";
 import MatchHistory from "@/components/MatchHistory";
 import PlayerStats from "@/components/PlayerStats";
 import {
-  type Summoner,
-  type RankedInfo,
-  type Match,
   type SummonerSpellsData,
   type ItemsData,
   type RunesData
 } from "@/lib/riot-server-api";
+import { Summoner, RankedInfo, Match } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 interface PlayerPageClientProps {
   summoner: Summoner;
@@ -90,12 +89,12 @@ export default function PlayerPageClient({
 
           <div className="mt-4 text-center">
             <Button
-              onPress={handleLoadMore}
+              onClick={handleLoadMore}
               isLoading={isLoadingMore}
               color="primary"
-              variant="flat"
-              startContent={!isLoadingMore && <Loader2 className="w-4 h-4" />}
+              variant="outline"
             >
+              {!isLoadingMore && <Loader2 className="w-4 h-4" />}
               {isLoadingMore ? "Loading..." : "Load more matches"}
             </Button>
           </div>
