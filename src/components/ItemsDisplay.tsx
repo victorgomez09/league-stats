@@ -1,6 +1,6 @@
 "use client";
 
-import { getItemImageUrl, type ItemsData } from "@/lib/riot-server-api";
+import { getItemImageUrl, type ItemsData } from "@/lib/_old.riot-server-api";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import Image from "next/image"
 

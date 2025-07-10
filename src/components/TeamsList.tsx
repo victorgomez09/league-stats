@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image'
-import { getChampionSquareUrl } from "@/lib/riot-server-api";
+import { getChampionSquareUrl } from "@/lib/_old.riot-server-api";
 
 interface Participant {
   puuid: string;

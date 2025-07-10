@@ -12,7 +12,7 @@ import {
   getRankedInfoByPuuid,
   getMatchHistory,
   getMatchDetails
-} from "@/lib/riot-server-api";
+} from "@/lib/_old.riot-server-api";
 import { TRPCError } from "@trpc/server";
 
 export const playerRouter = createTRPCRouter({

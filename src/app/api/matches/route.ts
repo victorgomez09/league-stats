@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getMatchHistory, getMatchDetails } from '@/lib/riot-server-api';
+import { getMatchHistory, getMatchDetails } from '@/lib/_old.riot-server-api';
 
 export async function GET(request: NextRequest) {
   try {

@@ -1,6 +1,6 @@
 "use client";
 
-import { getProfileIconUrl, getRankedEmblemUrl } from "@/lib/riot-server-api";
+import { getProfileIconUrl, getRankedEmblemUrl } from "@/lib/_old.riot-server-api";
 import { ChampionStat, Match, RankedInfo, Summoner } from "@/lib/types";
 import { Trophy } from "lucide-react";
 import Image from 'next/image';

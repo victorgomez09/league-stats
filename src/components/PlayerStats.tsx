@@ -1,13 +1,12 @@
 "use client";
 
-import { Match } from "@/lib/types";
-import { Target, Coins, Swords } from "lucide-react";
+import { MatchV5DTOs } from "@/lib/ezreal/models-dto";
+import { Coins, Swords, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
-import { RiotGameType } from "@/lib/types/riot.type";
 
 interface PlayerStatsProps {
-  matches: RiotGameType[];
+  matches: MatchV5DTOs.MatchDto[];
   playerPuuid: string;
 }
 

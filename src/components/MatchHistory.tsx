@@ -4,22 +4,24 @@ import {
   type ItemsData,
   type RunesData,
   type SummonerSpellsData
-} from "@/lib/riot-server-api";
+} from "@/lib/_old.riot-server-api";
 import { Match, Summoner } from "@/lib/types";
 import { Target } from "lucide-react";
 import MatchCard from "./MatchCard";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { RiotGameType } from "@/lib/types/riot.type";
+import { MatchV5DTOs, SummonerV4DTO } from "@/lib/ezreal/models-dto";
+import { RunesDto, SpellsDto } from "@/lib/riot.api";
 
 interface MatchHistoryProps {
-  matches: RiotGameType[];
-  summoner: Summoner;
-  spellsData: SummonerSpellsData;
-  itemsData: ItemsData;
-  runesData: RunesData;
+  matches: MatchV5DTOs.MatchDto[];
+  summoner: SummonerV4DTO;
+  spells: SpellsDto;
+  runes: RunesDto;
+  // itemsData: ItemsData;
 }
 
-export default function MatchHistory({ matches, summoner, spellsData, itemsData, runesData }: MatchHistoryProps) {
+export default function MatchHistory({ matches, summoner, spells, runes }: MatchHistoryProps) {
   return (
     <Card>
       <CardHeader>
@@ -37,9 +39,9 @@ export default function MatchHistory({ matches, summoner, spellsData, itemsData,
                 key={match.metadata.matchId}
                 match={match}
                 summoner={summoner}
-                spellsData={spellsData}
-                itemsData={itemsData}
-                runesData={runesData}
+                spells={spells}
+                runes={runes}
+              // itemsData={itemsData}
               />
             ))}
           </div>

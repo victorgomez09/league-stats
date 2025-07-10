@@ -1,4 +1,4 @@
-import { calculateKDA } from './riot-server-api';
+import { calculateKDA } from './_old.riot-server-api';
 import { ChampionsResponse, ChampionDetailResponse, Champion, ChampionDetail, Match, Summoner } from './types';
 import { RiotGameType } from './types/riot.type';
 

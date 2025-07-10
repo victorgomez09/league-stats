@@ -1,31 +1,27 @@
 "use client";
 
+import { MatchV5DTOs, SummonerV4DTO } from "@/lib/ezreal/models-dto";
 import {
-  calculateKDA,
   formatGameDuration,
-  type SummonerSpellsData,
   type ItemsData,
-  type RunesData
-} from "@/lib/riot-server-api";
-import ChampionInfo from "./ChampionInfo";
-import ItemsDisplay from "./ItemsDisplay";
-import TeamsList from "./TeamsList";
-import { Game, Match, Summoner } from "@/lib/types";
+  type RunesData,
+  type SummonerSpellsData
+} from "@/lib/_old.riot-server-api";
+import { RiotParticipantType } from "@/lib/types/riot.type";
 import { Card, CardContent } from "./ui/card";
-import { RiotGameType, RiotParticipantType } from "@/lib/types/riot.type";
+import { RunesDto, SpellsDto } from "@/lib/riot.api";
+import ChampionInfo from "./ChampionInfo";
 
 interface MatchCardProps {
-  match: RiotGameType;
-  summoner: Summoner;
-  spellsData: SummonerSpellsData;
-  itemsData: ItemsData;
-  runesData: RunesData;
+  match: MatchV5DTOs.MatchDto;
+  summoner: SummonerV4DTO;
+  spells: SpellsDto;
+  runes: RunesDto;
+  // itemsData: ItemsData;
 }
 
-export default function MatchCard({ match, summoner, spellsData, itemsData, runesData }: MatchCardProps) {
-  console.log('match', match)
-  const playerData: RiotParticipantType = match.info.participants.find(p => p.puuid === summoner.puuid);
-  console.log('playerData', playerData)
+export default function MatchCard({ match, summoner, spells, runes }: MatchCardProps) {
+  const playerData = match.info.participants.find(p => p.puuid === summoner.puuid);
 
   if (!playerData) return null;
 
@@ -43,54 +39,54 @@ export default function MatchCard({ match, summoner, spellsData, itemsData, rune
     'TOP': 'Top',
     'JUNGLE': 'Jungle',
     'MIDDLE': 'Mid',
-    'BOTTOM': 'ADC',
-    'UTILITY': 'Support'
+    'CARRY': 'ADC',
+    'SUPPORT': 'Support'
   };
   const displayRole = roleMap[playerData.role] || playerData.lane || 'N/A';
 
   return (
-    <Card className={`border-l-2 ${playerData.win ? 'border-l-green-500' : 'border-l-red-500'} overflow-hidden bg-background`}>
+    <Card className={`border-l-2 ${playerData.win ? 'border-success' : 'border-destructive'} overflow-hidden bg-background`}>
       <CardContent className="p-2 overflow-hidden">
         <div className="flex items-center gap-1 md:gap-2 min-w-0">
 
-          <div className="w-16 md:w-20 flex-shrink-0 text-center">
+          <div className="w-20 md:w-20 flex-shrink-0 text-center">
             <div className="text-xs font-medium text-default-600">
               {match.info.gameMode === 'CLASSIC' ? 'Ranked Solo' : match.info.gameMode}
             </div>
-            <div className={`text-xs font-semibold ${playerData.win ? 'text-green-600' : 'text-red-600'}`}>
+            <div className={`text-xs font-semibold ${playerData.win ? 'text-success' : 'text-destructive'}`}>
               {playerData.win ? 'VICTORY' : 'DEFEAT'}
             </div>
             <div className="text-xs text-default-500">
               {formatGameDuration(match.info.gameDuration)}
             </div>
             <div className="text-xs text-primary-600 font-medium">
-              {displayRole}
+              {match.info.gameMode === 'ARAM' ? '-' : displayRole}
             </div>
           </div>
 
-          {/* <ChampionInfo
-            playerData={playerData}
-            spellsData={spellsData}
-            runesData={runesData}
-          /> */}
+          <ChampionInfo
+            player={playerData}
+            spells={spells}
+            runes={runes}
+          />
 
-          <div className="flex w-12 md:w-14 text-center">
+          <div className="flex flex-col w-16 md:w-14 text-center">
             <div className="text-sm font-semibold">
               {playerData.kills} / <span className="text-warning">{playerData.deaths}</span> / {playerData.assists}
             </div>
             <div className="text-xs text-default-500">
-              {playerData.kda} KDA
+              {((playerData.kills + playerData.assists) / playerData.deaths).toFixed(2)} KDA
             </div>
           </div>
 
-          {/*<div className="hidden md:block flex-shrink-0 w-14 text-center">
+          <div className="hidden md:block flex-shrink-0 w-14 text-center">
             <div className="text-sm font-medium">
-              {totalCS}
+              {playerData.totalMinionsKilled}
             </div>
-            <div className="text-xs text-default-500">{csPerMin} CS/min</div>
+            <div className="text-xs text-default-500">{(playerData.totalMinionsKilled / (match.info.gameDuration / 60)).toFixed(2)} CS/min</div>
           </div>
 
-          <div className="hidden lg:block flex-shrink-0 w-14 text-center">
+          {/*<div className="hidden lg:block flex-shrink-0 w-14 text-center">
             <div className="text-sm font-medium text-orange-600">
               {damageFormatted}
             </div>

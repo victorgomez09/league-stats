@@ -1,21 +1,24 @@
 "use client";
 
-import { getProfileIconUrl, getRankedEmblemUrl } from "@/lib/riot-server-api";
+import { getProfileIconUrl, getRankedEmblemUrl } from "@/lib/_old.riot-server-api";
 import { RankedInfo, Summoner } from "@/lib/types";
 import { Trophy } from "lucide-react";
 import Image from 'next/image';
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 import { Progress } from "./ui/progress";
+import { SummonerLeagueDto, SummonerV4DTO } from "@/lib/ezreal/models-dto";
+import { AccountDto } from "@/lib/ezreal/models-dto/account";
 
 interface PlayerProfileProps {
-  summoner: Summoner;
-  rankedData: RankedInfo[];
+  summoner: SummonerV4DTO;
+  account: AccountDto;
+  ranked: SummonerLeagueDto[];
 }
 
-export default function PlayerProfile({ summoner, rankedData }: PlayerProfileProps) {
+export default function PlayerProfile({ summoner, account, ranked }: PlayerProfileProps) {
   const getSoloQueueData = () => {
-    return rankedData.find(r => r.queueType === "RANKED_SOLO_5x5");
+    return ranked.find(r => r.queueType === "RANKED_SOLO_5x5");
   };
 
   return (
@@ -31,7 +34,7 @@ export default function PlayerProfile({ summoner, rankedData }: PlayerProfilePro
               height={64}
             />
           </div>
-          <h2 className="text-xl font-bold mb-1">{summoner.name}</h2>
+          <h2 className="text-xl font-bold mb-1">{account.gameName}</h2>
           <Badge color="primary" variant="default" className="mb-4">
             Level {summoner.summonerLevel}
           </Badge>

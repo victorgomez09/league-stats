@@ -2,7 +2,7 @@
 
 import { Image } from "@heroui/react";
 import { useState } from "react";
-import { getRuneImageUrlWithFallback } from "@/lib/riot-server-api";
+import { getRuneImageUrlWithFallback } from "@/lib/_old.riot-server-api";
 
 interface RuneImageProps {
   runeId: number;

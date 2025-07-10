@@ -1,26 +1,11 @@
 import Navbar from "@/components/Navbar";
 import PlayerNotFound from "@/components/PlayerNotFound";
+import { RegionGroups } from "@/lib/ezreal/constants";
+import { MatchV5DTOs, SummonerLeagueDto, SummonerV4DTO } from "@/lib/ezreal/models-dto";
+import { AccountDto } from "@/lib/ezreal/models-dto/account";
+import { getRunes, getSpells, RunesDto, SpellsDto } from "@/lib/riot.api";
+import { getAccount, getSummoner, getSummonerMatches, getSummonerRankedInfo } from "@/lib/summoners.api";
 import PlayerPageClient from "./player-page-client";
-import {
-  getSummonerByName,
-  getAccountByRiotId,
-  getSummonerByPuuid,
-  getRankedInfoByPuuid,
-  getMatchHistory,
-  getMatchDetails,
-  getSummonerSpellsData,
-  getItemsData,
-  getRunesData,
-  getErrorMessage,
-  type SummonerSpellsData,
-  type ItemsData,
-  type RunesData,
-  getSummonerMastery,
-  getMatchHistoryDetails
-} from "@/lib/riot-server-api";
-import { Mastery, Match, RankedInfo, Summoner } from "@/lib/types";
-import { getStatsByChamp } from "@/lib/champions-api";
-import { RiotGameType } from "@/lib/types/riot.type";
 
 interface PlayerPageProps {
   params: Promise<{
@@ -32,58 +17,52 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
   const resolvedParams = await params;
   const summonerName = decodeURIComponent(resolvedParams.summonerName);
 
-  let summoner: Summoner | null = null;
-  let rankedData: RankedInfo[] = [];
-  let matches: RiotGameType[] = [];
+  let account: AccountDto | null = null;
+  let summoner: SummonerV4DTO | null = null;
+  // let masteries: ChampionMasteryDTO[] | null = null
+  let ranked: SummonerLeagueDto[] = [];
+  let matches: MatchV5DTOs.MatchDto[] = [];
   let error: string | null = null;
-  let spellsData: SummonerSpellsData = {};
-  let itemsData: ItemsData = {};
-  let runesData: RunesData = [];
-  let masteries: Mastery[] = [];
-  let championStats: any = null;
+  let spells: SpellsDto = {};
+  let runes: RunesDto = [];
+  // let itemsData: ItemsData = {};
+  // let masteries: Mastery[] = [];
+  // let championStats: any = null;
 
   try {
     if (summonerName.includes('#')) {
       const [gameName, tagLine] = summonerName.split('#');
-      const account = await getAccountByRiotId(gameName, tagLine);
-      summoner = await getSummonerByPuuid(account.puuid, account.gameName);
-      console.log('summoner', summoner)
-      console.log('masteries', await getSummonerMastery(account.puuid))
-      // masteries = await getSummonerMastery(account.puuid)
+
+      account = await getAccount(gameName, tagLine, RegionGroups.EUROPE)
+      summoner = (await getSummoner(gameName, tagLine, RegionGroups.EUROPE, account)).response
+      // masteries = (await getSummonerMastery(account.puuid)).response
+      ranked = (await getSummonerRankedInfo(account.puuid)).response
+      matches = await getSummonerMatches(gameName, tagLine, RegionGroups.EUROPE, summoner)
+      spells = await getSpells();
+      runes = await getRunes();
     } else {
-      summoner = await getSummonerByName(summonerName);
+      // summoner = await getSummonerByName(summonerName);
     }
 
-    if (!summoner) {
-      throw new Error('PLAYER_NOT_FOUND');
-    }
+    // if (!summoner) {
+    //   throw new Error('PLAYER_NOT_FOUND');
+    // }
 
-    try {
-      rankedData = await getRankedInfoByPuuid(summoner.puuid);
-    } catch {
-    }
+    // const [spells, items, runes] = await Promise.all([
+    //   getSummonerSpellsData(),
+    //   getItemsData(),
+    //   getRunesData(),
+    // ]);
+    // spellsData = spells;
+    // itemsData = items;
+    // runesData = runes;
 
-    const matchIds = await getMatchHistory(summoner.puuid, 10);
-    console.log('matches', await getMatchHistoryDetails(summoner.puuid, 10))
-
-    const matchPromises = matchIds.map(id => getMatchDetails(id));
-    matches = await Promise.all(matchPromises);
-
-    const [spells, items, runes] = await Promise.all([
-      getSummonerSpellsData(),
-      getItemsData(),
-      getRunesData(),
-    ]);
-    spellsData = spells;
-    itemsData = items;
-    runesData = runes;
-
-    championStats = await getStatsByChamp(summoner, matches)
+    // championStats = await getStatsByChamp(summoner, matches)
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : "Erro desconhecido";
-    error = getErrorMessage(errorMessage);
+    const errorMessage = err instanceof Error ? err.message : "Unkown error";
+    // error = getErrorMessage(errorMessage);
+    console.log(errorMessage)
   }
-
 
   if (error) {
     return (
@@ -109,12 +88,13 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
 
       <PlayerPageClient
         summoner={summoner}
-        rankedData={rankedData}
+        account={account}
+        ranked={ranked}
         initialMatches={matches}
-        spellsData={spellsData}
-        itemsData={itemsData}
-        runesData={runesData}
-        championStats={championStats}
+        spells={spells}
+        runes={runes}
+      // itemsData={itemsData}
+      // championStats={championStats}
       />
     </div>
   );
