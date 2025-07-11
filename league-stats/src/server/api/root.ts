@@ -1,7 +1,7 @@
-import { router } from "./trpc";
 import { summonerRouter } from "./routers/summoner.router";
+import { createTRPCRouter } from "./trpc";
 
-export const appRouter = router({
+export const appRouter = createTRPCRouter({
     summoner: summonerRouter,
 });
 

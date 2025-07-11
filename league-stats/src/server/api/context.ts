@@ -1,12 +1,8 @@
-import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import { cache } from 'react';
 
-export async function createContext(opts?: FetchCreateContextFnOptions) {
-    // const session = await auth();
-
-    return {
-        // session,
-        headers: opts && Object.fromEntries(opts.req.headers),
-    };
-}
-
-export type Context = Awaited<ReturnType<typeof createContext>>;
+export const createTRPCContext = cache(async () => {
+    /**
+     * @see: https://trpc.io/docs/server/context
+     */
+    return { };
+});

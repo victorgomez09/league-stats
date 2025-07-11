@@ -1,32 +1,42 @@
-import { experimental_createServerActionHandler } from '@trpc/next/app-dir/server';
-import { initTRPC, TRPCError } from '@trpc/server';
-import { headers } from 'next/headers';
-import { ZodError } from 'zod';
-import { Context } from './context';
+import { initTRPC } from '@trpc/server';
+import superjson from "superjson";
+import { createClient } from 'redis';
 
-const t = initTRPC.context<Context>().create({
-    errorFormatter(opts) {
-        const { shape, error } = opts;
-        return {
-            ...shape,
-            data: {
-                ...shape.data,
-                zodError:
-                    error.code === 'BAD_REQUEST' && error.cause instanceof ZodError
-                        ? error.cause.flatten()
-                        : null,
-            },
-        };
-    },
+// Redis client
+const redisClient = createClient({
+    password: 'league-stats'
+});
+await redisClient.connect();
+
+// Avoid exporting the entire t-object
+// since it's not very descriptive.
+// For instance, the use of a t variable
+// is common in i18n libraries.
+const t = initTRPC.create({
+    /**
+     * @see https://trpc.io/docs/server/data-transformers
+     */
+    transformer: superjson,
 });
 
-/**
- * Create a server-side caller
- * @see https://trpc.io/docs/server/server-side-calls
- */
-export const createCallerFactory = t.createCallerFactory;
+// cache middleware https://app.studyraid.com/en/read/11153/345929/caching-strategies-with-trpc
+export const cacheMiddleware = t.middleware(async ({ ctx, next, path }) => {
+    const cacheKey = `trpc:${path}`;
+    const cachedData = await redisClient.get(cacheKey);
 
-export const router = t.router;
+    if (cachedData) {
+        return JSON.parse(cachedData);
+    }
+
+    const result = await next();
+    await redisClient.set(cacheKey, JSON.stringify(result), { EX: 3600 }); // Cache for 60 minutes
+
+    return result;
+});
+
+// Base router and procedure helpers
+export const createTRPCRouter = t.router;
+export const createCallerFactory = t.createCallerFactory;
 export const publicProcedure = t.procedure;
 
 // export const protectedProcedure = publicProcedure.use((opts) => {

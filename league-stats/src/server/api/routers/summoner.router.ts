@@ -2,7 +2,8 @@ import { LolApi, RiotApi } from "@/lib/ezreal";
 import { RegionGroups, Regions } from "@/lib/ezreal/constants";
 import { MatchV5DTOs } from "@/lib/ezreal/models-dto";
 import {
-  router,
+  cacheMiddleware,
+  createTRPCRouter,
   publicProcedure
 } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
@@ -10,8 +11,9 @@ import { z } from "zod";
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
-export const summonerRouter = router({
+export const summonerRouter = createTRPCRouter({
   getAccount: publicProcedure
+    .use(cacheMiddleware)
     .input(z.object({
       summonerName: z.string(),
       tag: z.string(),

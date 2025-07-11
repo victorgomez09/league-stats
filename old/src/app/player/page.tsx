@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import { Button } from "@heroui/react";
 
 const formSchema = z
   .object({
@@ -21,7 +20,7 @@ const formSchema = z
 
 type formType = z.infer<typeof formSchema>;
 
-export default function PlayerPage() {
+export function PlayerSearch() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
