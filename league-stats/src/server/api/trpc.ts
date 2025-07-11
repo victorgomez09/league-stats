@@ -1,6 +1,7 @@
 import { initTRPC } from '@trpc/server';
 import superjson from "superjson";
 import { createClient } from 'redis';
+import { logger } from '../utils/logger';
 
 // Redis client
 const redisClient = createClient({
@@ -25,11 +26,24 @@ export const cacheMiddleware = t.middleware(async ({ ctx, next, path }) => {
     const cachedData = await redisClient.get(cacheKey);
 
     if (cachedData) {
+        logger.debug(`Getting data from cache: ${cacheKey}`)
         return JSON.parse(cachedData);
     }
 
     const result = await next();
+    logger.debug(`Setting ${cacheKey} in cache`)
     await redisClient.set(cacheKey, JSON.stringify(result), { EX: 3600 }); // Cache for 60 minutes
+
+    return result;
+});
+
+// logging middleware
+export const loggerMiddleware = t.middleware(async ({ path, type, next }) => {
+    logger.info(`Request: ${type} ${path}`);
+    const start = Date.now();
+    const result = await next();
+    const durationMs = Date.now() - start;
+    logger.info(`Response: ${type} ${path} - ${durationMs}ms`);
 
     return result;
 });

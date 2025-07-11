@@ -1,0 +1,910 @@
+{"level":"info","message":"Request: query summoner.getAccount"}
+{"level":"info","message":"Response: query summoner.getAccount - 87ms"}
+{"level":"info","message":"Request: query summoner.getSummoner"}
+{"level":"info","message":"Response: query summoner.getSummoner - 172ms"}
+{"level":"info","message":"Request: query summoner.getSummonerRankedInfo"}
+{"level":"info","message":"Response: query summoner.getSummonerRankedInfo - 48ms"}
+{"level":"info","message":"Request: query summoner.getSummonerProfilePicture"}
+{"level":"info","message":"Request: query summoner.getSummonerRankedPicture"}
+{"level":"info","message":"Response: query summoner.getSummonerProfilePicture - 1ms"}
+{"level":"info","message":"Response: query summoner.getSummonerRankedPicture - 0ms"}
+{"level":"info","message":"Request: query summoner.getSummonerMatches"}
+{"level":"info","message":"Response: query summoner.getSummonerMatches - 2206ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Request: query spell.getSpells"}
+{"level":"info","message":"Response: query spell.getSpells - 52ms"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 2ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 2ms"}
+{"level":"info","message":"Request: query summoner.getAccount"}
+{"level":"info","message":"Response: query summoner.getAccount - 94ms"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query rune.getRunePicture - 1ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 1ms"}
+{"level":"info","message":"Request: query summoner.getSummoner"}
+{"level":"info","message":"Request: query summoner.getSummonerRankedInfo"}
+{"level":"info","message":"Request: query summoner.getSummonerProfilePicture"}
+{"level":"info","message":"Request: query summoner.getSummonerRankedPicture"}
+{"level":"info","message":"Response: query summoner.getSummonerProfilePicture - 24ms"}
+{"level":"info","message":"Response: query summoner.getSummonerRankedPicture - 24ms"}
+{"level":"info","message":"Response: query summoner.getSummonerRankedInfo - 117ms"}
+{"level":"info","message":"Response: query summoner.getSummoner - 252ms"}
+{"level":"info","message":"Request: query rune.getRunes"}
+{"level":"info","message":"Response: query rune.getRunes - 192ms"}
+{"level":"info","message":"Request: query rune.getRunes"}
+{"level":"info","message":"Response: query rune.getRunes - 43ms"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Request: query summoner.getSummonerMatches"}
+{"level":"info","message":"Response: query summoner.getSummonerMatches - 1531ms"}
+{"level":"info","message":"Request: query spell.getSpells"}
+{"level":"info","message":"Request: query rune.getRunes"}
+{"level":"info","message":"Response: query rune.getRunes - 114ms"}
+{"level":"info","message":"Response: query spell.getSpells - 140ms"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Request: query rune.getRunes"}
+{"level":"info","message":"Response: query rune.getRunes - 59ms"}
+{"level":"info","message":"Request: query rune.getRunes"}
+{"level":"info","message":"Response: query rune.getRunes - 57ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 12ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 9ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 13ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 10ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 8ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 7ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 2ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query rune.getRunePicture - 0ms"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Response: query rune.getRunePicture - 0ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 0ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 0ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 0ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 15ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 15ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 14ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 14ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 14ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 13ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 13ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 13ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 13ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 13ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 12ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 10ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 8ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 7ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 7ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 12ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 12ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 12ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 11ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 10ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 14ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 12ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 12ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 11ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 11ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 10ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 10ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 10ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 9ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 9ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 8ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 8ms"}
+{"level":"info","message":"Request: query summoner.getAccount"}
+{"level":"info","message":"Response: query summoner.getAccount - 140ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 15ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 14ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 14ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 14ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 14ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 6ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Request: query summoner.getSummoner"}
+{"level":"info","message":"Response: query summoner.getSummoner - 147ms"}
+{"level":"info","message":"Request: query summoner.getSummonerRankedInfo"}
+{"level":"info","message":"Response: query summoner.getSummonerRankedInfo - 40ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Request: query summoner.getSummonerProfilePicture"}
+{"level":"info","message":"Request: query summoner.getSummonerRankedPicture"}
+{"level":"info","message":"Response: query summoner.getSummonerProfilePicture - 0ms"}
+{"level":"info","message":"Response: query summoner.getSummonerRankedPicture - 0ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Request: query summoner.getSummonerMatches"}
+{"level":"info","message":"Response: query summoner.getSummonerMatches - 1419ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 2ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 2ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 3ms"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query spell.getSpellPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Request: query rune.getRunePicture"}
+{"level":"info","message":"Request: query champion.getChampionPicture"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 4ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 3ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query spell.getSpellPicture - 6ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 5ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 5ms"}
+{"level":"info","message":"Response: query rune.getRunePicture - 4ms"}
+{"level":"info","message":"Response: query champion.getChampionPicture - 4ms"}
