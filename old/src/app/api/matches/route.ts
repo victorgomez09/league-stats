@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getMatchHistory, getMatchDetails } from '@/lib/_old.riot-server-api';
+import { getMatchHistory, getMatchDetails } from '@/lib/riotServerApi';
 
 export async function GET(request: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(matches);
   } catch {
     return NextResponse.json(
-      { error: 'Failed to fetch matches' },
+      { error: 'Failed to fetch matches' }, 
       { status: 500 }
     );
   }

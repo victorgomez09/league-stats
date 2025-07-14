@@ -1,4 +1,5 @@
 import { championRouter } from "./routers/champion";
+import { itemRouter } from "./routers/item";
 import { runeRouter } from "./routers/rune";
 import { spellRouter } from "./routers/spell";
 import { summonerRouter } from "./routers/summoner";
@@ -8,7 +9,8 @@ export const appRouter = createTRPCRouter({
     summoner: summonerRouter,
     champion: championRouter,
     spell: spellRouter,
-    rune: runeRouter
+    rune: runeRouter,
+    item: itemRouter
 });
 
 export type AppRouter = typeof appRouter;

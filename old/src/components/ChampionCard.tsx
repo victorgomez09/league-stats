@@ -4,7 +4,7 @@ import { Image, Spinner } from "@heroui/react";
 import { Champion } from "@/lib/types";
 import Link from "next/link";
 import { useState, useEffect, memo, useCallback } from "react";
-import { getChampionImageUrl } from "@/lib/champions-api";
+import { getChampionImageUrl } from "@/lib/championsApi";
 
 interface ChampionCardProps {
   champion: Champion;
@@ -48,7 +48,7 @@ const ChampionCard = memo(function ChampionCard({ champion }: ChampionCardProps)
               <Spinner size="sm" color="primary" />
             </div>
           )}
-
+          
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-2">
             <h3 className="text-white text-xs font-semibold truncate leading-tight">
               {champion.name}

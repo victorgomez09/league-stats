@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
-import { createTRPCNext } from '@trpc/next';
 
 import type { AppRouter } from "@/server/api/root";
 
@@ -19,7 +18,7 @@ const getQueryClient = () => {
   return (clientQueryClientSingleton ??= createQueryClient());
 };
 
-export const api = createTRPCNext<AppRouter>();
+export const api = createTRPCReact<AppRouter>();
 
 function getBaseUrl() {
   if (typeof window !== "undefined") return window.location.origin;

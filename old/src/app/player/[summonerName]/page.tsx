@@ -1,9 +1,24 @@
-import { api } from "@/app/_trpc/client";
 import Navbar from "@/components/Navbar";
-import { RegionGroups } from "@/lib/ezreal/constants";
-import { MatchV5DTOs, SummonerLeagueDto, SummonerV4DTO } from "@/lib/ezreal/models-dto";
-import { AccountDto } from "@/lib/ezreal/models-dto/account";
-import { RunesDto, SpellsDto } from "@/lib/riot.api";
+import PlayerNotFound from "@/components/PlayerNotFound";
+import PlayerPageClient from "./PlayerPageClient";
+import { 
+  getSummonerByName,
+  getAccountByRiotId,
+  getSummonerByPuuid,
+  getRankedInfoByPuuid, 
+  getMatchHistory, 
+  getMatchDetails,
+  getSummonerSpellsData,
+  getItemsData,
+  getRunesData,
+  getErrorMessage,
+  type Summoner, 
+  type RankedInfo,
+  type Match,
+  type SummonerSpellsData,
+  type ItemsData,
+  type RunesData
+} from "@/lib/riotServerApi";
 
 interface PlayerPageProps {
   params: Promise<{
@@ -14,89 +29,85 @@ interface PlayerPageProps {
 export default async function PlayerPage({ params }: PlayerPageProps) {
   const resolvedParams = await params;
   const summonerName = decodeURIComponent(resolvedParams.summonerName);
-
-  const { data } = api.summoner.getAccount.useQuery({ summonerName: summonerName.split('#')[0], tag: summonerName.split('#')[1], server: RegionGroups.EUROPE });
-  console.log('data', data)
-
-  let account: AccountDto | null = null;
-  let summoner: SummonerV4DTO | null = null;
-  // let masteries: ChampionMasteryDTO[] | null = null
-  let ranked: SummonerLeagueDto[] = [];
-  let matches: MatchV5DTOs.MatchDto[] = [];
+  
+  
+  let summoner: Summoner | null = null;
+  let rankedData: RankedInfo[] = [];
+  let matches: Match[] = [];
   let error: string | null = null;
-  let spells: SpellsDto = {};
-  let runes: RunesDto = [];
-  // let itemsData: ItemsData = {};
-  // let masteries: Mastery[] = [];
-  // let championStats: any = null;
+  let spellsData: SummonerSpellsData = {};
+  let itemsData: ItemsData = {};
+  let runesData: RunesData = [];
 
-  // try {
-  //   if (summonerName.includes('#')) {
-  //     const [gameName, tagLine] = summonerName.split('#');
+  try {
+    if (summonerName.includes('#')) {
+      const [gameName, tagLine] = summonerName.split('#');
+      const account = await getAccountByRiotId(gameName, tagLine);
+      summoner = await getSummonerByPuuid(account.puuid, account.gameName);
+    } else {
+      summoner = await getSummonerByName(summonerName);
+    }
+    
+    
+    if (!summoner) {
+      throw new Error('PLAYER_NOT_FOUND');
+    }
+    
+    try {
+      rankedData = await getRankedInfoByPuuid(summoner.puuid);
+    } catch {
+    }
+    
+    const matchIds = await getMatchHistory(summoner.puuid, 10);
+    
+    const matchPromises = matchIds.map(id => getMatchDetails(id));
+    matches = await Promise.all(matchPromises);
+    
+    const [spells, items, runes] = await Promise.all([
+      getSummonerSpellsData(),
+      getItemsData(),
+      getRunesData()
+    ]);
+    spellsData = spells;
+    itemsData = items;
+    runesData = runes;
+    
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "Erro desconhecido";
+    error = getErrorMessage(errorMessage);
+  }
 
-  //     account = await getAccount(gameName, tagLine, RegionGroups.EUROPE)
-  //     summoner = (await getSummoner(gameName, tagLine, RegionGroups.EUROPE, account)).response
-  //     // masteries = (await getSummonerMastery(account.puuid)).response
-  //     ranked = (await getSummonerRankedInfo(account.puuid)).response
-  //     matches = await getSummonerMatches(gameName, tagLine, RegionGroups.EUROPE, summoner)
-  //     spells = await getSpells();
-  //     runes = await getRunes();
-  //   } else {
-  //     // summoner = await getSummonerByName(summonerName);
-  //   }
 
-  // if (!summoner) {
-  //   throw new Error('PLAYER_NOT_FOUND');
-  // }
+  if (error) {
+    return (
+      <div className="min-h-screen">
+        <Navbar />
+        <PlayerNotFound error={error} />
+      </div>
+    );
+  }
 
-  // const [spells, items, runes] = await Promise.all([
-  //   getSummonerSpellsData(),
-  //   getItemsData(),
-  //   getRunesData(),
-  // ]);
-  // spellsData = spells;
-  // itemsData = items;
-  // runesData = runes;
-
-  // championStats = await getStatsByChamp(summoner, matches)
-  // } catch (err) {
-  //   const errorMessage = err instanceof Error ? err.message : "Unkown error";
-  //   // error = getErrorMessage(errorMessage);
-  //   console.log(errorMessage)
-  // }
-
-  // if (error) {
-  //   return (
-  //     <div className="min-h-screen">
-  //       <Navbar />
-  //       <PlayerNotFound error={error} />
-  //     </div>
-  //   );
-  // }
-
-  // if (!summoner) {
-  //   return (
-  //     <div className="min-h-screen">
-  //       <Navbar />
-  //       <PlayerNotFound title="Unexpected error" />
-  //     </div>
-  //   );
-  // }
+  if (!summoner) {
+    return (
+      <div className="min-h-screen">
+        <Navbar />
+        <PlayerNotFound title="Unexpected error" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
       <Navbar />
-
-      {/* <PlayerPageClient
+      
+      <PlayerPageClient
         summoner={summoner}
-        account={account}
-        ranked={ranked}
+        rankedData={rankedData}
         initialMatches={matches}
-        spells={spells}
-        runes={runes}
-      // itemsData={itemsData}
-      // championStats={championStats}
-      /> */}
+        spellsData={spellsData}
+        itemsData={itemsData}
+        runesData={runesData}
+      />
     </div>
   );
 }

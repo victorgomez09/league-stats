@@ -1,52 +1,57 @@
 "use client";
 
-import { Image, Tooltip } from "@heroui/react";
-import { getItemImageUrl, type ItemsData } from "@/lib/riotServerApi";
+import { DragonItemDto, ItemsDto } from "@/app/models/item";
+import Image from "next/image"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { trpc } from "@/trpc/client";
+import { Spinner } from "./ui/spinner";
 
 interface ItemsDisplayProps {
-  items: number[];
-  itemsData: ItemsData;
+  itemId: number
+  item: DragonItemDto
 }
 
-export default function ItemsDisplay({ items, itemsData }: ItemsDisplayProps) {
-  const getItemInfo = (itemId: number): { 
-    name: string; 
-    description: string; 
+export default function MatchItemView({ itemId, item }: ItemsDisplayProps) {
+  const { data: itemPicture, isLoading: itemPictureLoading } = trpc.item.getItemPicture.useQuery({ itemId: itemId }, { enabled: !!itemId });
+
+  if (itemPictureLoading) return <Spinner />
+
+  const getItemInfo = (itemId: number): {
+    name: string;
+    description: string;
     stats: string[];
     cost: string;
   } => {
-    const item = itemsData[itemId.toString()];
-    
     if (item) {
       const cleanDescription = item.plaintext || item.description.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
-      
+
       const stats: string[] = [];
       if (item.stats) {
         Object.entries(item.stats).forEach(([stat, value]) => {
           if (value && typeof value === 'number') {
             let statName = stat;
             const statTranslations: { [key: string]: string } = {
-              'FlatHPPoolMod': 'Vida',
+              'FlatHPPoolMod': 'Health',
               'FlatMPPoolMod': 'Mana',
               'FlatArmorMod': 'Armor',
               'FlatSpellBlockMod': 'Magic Resist',
               'FlatPhysicalDamageMod': 'Attack Damage',
-              'FlatMagicDamageMod': 'Poder de Habilidade',
-              'PercentAttackSpeedMod': 'Velocidade de Ataque',
+              'FlatMagicDamageMod': 'Power Ability',
+              'PercentAttackSpeedMod': 'Attack Speed',
               'PercentMovementSpeedMod': 'Movement Speed',
               'FlatCritChanceMod': 'Critical Chance',
               'PercentLifeStealMod': 'Life Steal'
             };
-            
+
             statName = statTranslations[stat] || stat;
             const formattedValue = stat.includes('Percent') ? `${(value * 100).toFixed(0)}%` : value.toString();
             stats.push(`${formattedValue} ${statName}`);
           }
         });
       }
-      
+
       const cost = item.gold?.total ? `${item.gold.total} (${item.gold.base})` : '';
-      
+
       return {
         name: item.name,
         description: cleanDescription,
@@ -54,10 +59,10 @@ export default function ItemsDisplay({ items, itemsData }: ItemsDisplayProps) {
         cost
       };
     }
-    
-    return { 
-      name: 'Unknown Item', 
-      description: 'Information not available',
+
+    return {
+      name: 'Unknown Item',
+      description: 'Data not available',
       stats: [],
       cost: ''
     };
@@ -65,55 +70,57 @@ export default function ItemsDisplay({ items, itemsData }: ItemsDisplayProps) {
 
   return (
     <div className="grid grid-cols-3 gap-0.5">
-      {items.slice(0, 6).map((itemId, itemIndex) => (
-        <div key={itemIndex} className="w-6 h-6 bg-default-100 rounded border overflow-hidden">
-          {itemId > 0 ? (
-            <Tooltip 
-              content={
-                <div className="max-w-xs p-2">
-                  {(() => {
-                    const itemInfo = getItemInfo(itemId);
-                    return (
-                      <>
-                        <div className="font-semibold text-primary mb-2">{itemInfo.name}</div>
-                        <div className="text-xs text-default-600 mb-2">
-                          {itemInfo.description}
-                        </div>
-                        {itemInfo.stats.length > 0 && (
-                          <div className="mb-2">
-                            {itemInfo.stats.map((stat, statIndex) => (
-                              <div key={statIndex} className="text-xs text-foreground">
-                                {stat}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                        {itemInfo.cost && (
-                          <div className="text-xs text-warning">
-                            Custo: {itemInfo.cost}
-                          </div>
-                        )}
-                      </>
-                    );
-                  })()} 
-                </div>
-              }
+      <div className="w-6 h-6 bg-default-100 rounded border overflow-hidden">
+        {itemId > 0 ? (
+          <TooltipProvider>
+            <Tooltip
             >
-              <Image
-                src={getItemImageUrl(itemId)}
-                alt={`Item ${itemId}`}
-                className="w-full h-full object-cover cursor-help"
-                width={24}
-                height={24}
-              />
+              <TooltipTrigger asChild>
+                <Image
+                  src={itemPicture!}
+                  alt={`Item ${itemId}`}
+                  className="w-full h-full object-cover cursor-help"
+                  width={24}
+                  height={24}
+                />
+              </TooltipTrigger>
             </Tooltip>
-          ) : null}
-        </div>
-      ))}
-      
+
+            <TooltipContent>
+              <div className="max-w-xs p-2">
+                {(() => {
+                  const itemInfo = getItemInfo(itemId);
+                  return (
+                    <>
+                      <div className="font-semibold text-primary mb-2">{itemInfo.name}</div>
+                      <div className="text-xs text-default-600 mb-2">
+                        {itemInfo.description}
+                      </div>
+                      {itemInfo.stats.length > 0 && (
+                        <div className="mb-2">
+                          {itemInfo.stats.map((stat, statIndex) => (
+                            <div key={statIndex} className="text-xs text-foreground">
+                              {stat}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {itemInfo.cost && (
+                        <div className="text-xs text-warning">
+                          Custo: {itemInfo.cost}
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
+              </div>
+            </TooltipContent>
+          </TooltipProvider>
+        ) : null}
+      </div>
+
       <div className="w-6 h-6 bg-default-100 rounded border overflow-hidden col-start-2 col-end-3">
-        {items[6] > 0 && (
-          <Tooltip 
+        {/* <Tooltip
             content={
               <div className="max-w-xs p-2">
                 {(() => {
@@ -140,7 +147,7 @@ export default function ItemsDisplay({ items, itemsData }: ItemsDisplayProps) {
                       )}
                     </>
                   );
-                })()} 
+                })()}
               </div>
             }
           >
@@ -151,8 +158,7 @@ export default function ItemsDisplay({ items, itemsData }: ItemsDisplayProps) {
               width={24}
               height={24}
             />
-          </Tooltip>
-        )}
+          </Tooltip> */}
       </div>
     </div>
   );

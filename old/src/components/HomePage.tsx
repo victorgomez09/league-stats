@@ -2,12 +2,15 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Champion } from "@/lib/types";
-import { getChampions, getCurrentVersion, getChampionImageUrl } from "@/lib/champions-api";
+import { getChampions, getCurrentVersion, getChampionImageUrl } from "@/lib/championsApi";
 import ChampionCard from "@/components/ChampionCard";
 import { Search, Sparkles, BarChart3, Target } from "lucide-react";
-import { Chip, Spinner } from "@heroui/react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { 
+  Button,
+  Input,
+  Chip,
+  Spinner
+} from "@heroui/react";
 
 export default function HomePage() {
   const [champions, setChampions] = useState<Champion[]>([]);
@@ -15,7 +18,7 @@ export default function HomePage() {
   const [currentVersion, setCurrentVersion] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const filteredChampions = useMemo(() =>
+  const filteredChampions = useMemo(() => 
     champions.filter(champion =>
       champion.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       champion.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,12 +36,12 @@ export default function HomePage() {
           ]);
           setChampions(championsData);
           setCurrentVersion(version);
-
-          const imagePromises = championsData.map(champion =>
+          
+          const imagePromises = championsData.map(champion => 
             getChampionImageUrl(champion.image.full)
           );
-          Promise.all(imagePromises).catch(() => { });
-
+          Promise.all(imagePromises).catch(() => {});
+          
         } catch {
         } finally {
           setLoading(false);
@@ -75,23 +78,37 @@ export default function HomePage() {
               {searchTerm ? `${filteredChampions.length} of ${champions.length} champions` : `${champions.length} champions`}
             </p>
           </div>
-
+          
           <div className="hidden md:flex items-center gap-3">
             <Input
+              classNames={{
+                base: "w-64",
+                inputWrapper: "h-9 bg-default-100/50 border-default-200",
+              }}
               placeholder="Search champion..."
+              size="sm"
               type="search"
+              variant="bordered"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              startContent={<Search className="w-4 h-4 text-default-400" />}
             />
           </div>
         </div>
 
         <div className="md:hidden mb-4">
           <Input
+            classNames={{
+              base: "w-full",
+              inputWrapper: "h-10 bg-default-100/50 border-default-200",
+            }}
             placeholder="Search champion..."
+            size="sm"
             type="search"
+            variant="bordered"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            startContent={<Search className="w-4 h-4 text-default-400" />}
           />
         </div>
 
@@ -113,8 +130,8 @@ export default function HomePage() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
         {filteredChampions.map((champion) => (
-          <ChampionCard
-            key={champion.id}
+          <ChampionCard 
+            key={champion.id} 
             champion={champion}
           />
         ))}
@@ -124,17 +141,17 @@ export default function HomePage() {
         <div className="text-center py-12">
           <div className="max-w-md mx-auto">
             <Chip color="warning" variant="flat" className="mb-4">
-              No data
+              Nenhum resultado
             </Chip>
             <h3 className="text-lg font-semibold mb-2">No champions found</h3>
             <p className="text-sm text-default-500 mb-4">
               Try searching for another name, title or role.
             </p>
-            <Button
-              color="primary"
-              variant="outline"
+            <Button 
+              color="primary" 
+              variant="bordered" 
               size="sm"
-              onClick={() => setSearchTerm("")}
+              onPress={() => setSearchTerm("")}
             >
               Limpar busca
             </Button>
@@ -152,8 +169,8 @@ export default function HomePage() {
             <p className="text-sm text-default-500 mb-4">
               Check your internet connection and try again.
             </p>
-            <Button color="primary" variant="outline" size="sm">
-              Reload
+            <Button color="primary" variant="bordered" size="sm">
+              Recarregar
             </Button>
           </div>
         </div>

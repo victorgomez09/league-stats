@@ -8,16 +8,18 @@ import { trpc } from "@/trpc/client";
 import { SpellsDto } from "@/app/models/spell";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { RunesDto } from "@/app/models/rune";
+import { DragonItemDto } from "@/app/models/item";
+import MatchItemView from "./match-item-view";
 
 interface SummonerMatchViewProps {
     match: MatchV5DTOs.MatchDto;
     summoner: SummonerV4DTO;
     spells: SpellsDto;
     runes: RunesDto;
-    // itemsData: ItemsData;
+    items: DragonItemDto[];
 }
 
-export default function SummonerMatchView({ match, summoner, spells, runes }: SummonerMatchViewProps) {
+export default function SummonerMatchView({ match, summoner, spells, runes, items }: SummonerMatchViewProps) {
     const playerData = match.info.participants.find(p => p.puuid === summoner.puuid);
     const { data: championPicture, isLoading: championPictureLoading } = trpc.champion.getChampionPicture.useQuery({ championName: playerData?.championName || "" }, { enabled: !!playerData?.championName })
     const { data: spell1Picture, isLoading: spell1PictureLoading } = trpc.spell.getSpellPicture.useQuery({ spellId: playerData?.summoner1Id || 0 }, { enabled: !!playerData?.summoner1Id })
@@ -35,6 +37,16 @@ export default function SummonerMatchView({ match, summoner, spells, runes }: Su
 
         return `${minutes}:${remainingSeconds}`;
     }
+
+    const playerItems = [
+        playerData.item0,
+        playerData.item1,
+        playerData.item2,
+        playerData.item3,
+        playerData.item4,
+        playerData.item5,
+        playerData.item6
+    ];
 
     // const calculateDaysPassed = (
     //     startTimestampStr: number,
@@ -260,7 +272,7 @@ export default function SummonerMatchView({ match, summoner, spells, runes }: Su
                                 <span>{' '}/{' '}{playerData.assists}</span>
                             </div>
 
-                            <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-1 text-neutral-400">
                                 <span className="font-semibold">
                                     {calculateKDA()}
                                 </span>
@@ -268,7 +280,7 @@ export default function SummonerMatchView({ match, summoner, spells, runes }: Su
                             </div>
 
                             {/* MINIONS */}
-                            <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-1 text-neutral-400">
                                 <span className="font-semibold">
                                     {playerData.totalMinionsKilled}
                                 </span>
@@ -276,12 +288,24 @@ export default function SummonerMatchView({ match, summoner, spells, runes }: Su
                                 <span>{(playerData.totalMinionsKilled / (match.info.gameDuration / 60)).toFixed(1)}</span>
                             </div>
 
-                            <div className="flex items-center gap-1">
-                                <span className="font-semibold">
-                                    {playerData.visionScore}
-                                </span>
-                                <span>Vision</span>
-                            </div>
+                            {match.info.gameMode === 'CLASSIC' && (
+                                <div className="flex items-center gap-1 text-neutral-400">
+                                    <span className="font-semibold">
+                                        {playerData.visionScore}
+                                    </span>
+                                    <span>Vision</span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* ITEMS */}
+                        <div className="grid grid-cols-6 gap-1">
+                            {JSON.stringify(items)}
+                            {/* {playerItems.slice(0, 6).map((itemId, index) => {
+                                return (
+                                    <MatchItemView key={index} itemId={itemId} item={items[itemId]} />
+                                )
+                            })} */}
                         </div>
                     </div>
                 </div>

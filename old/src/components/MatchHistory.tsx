@@ -1,47 +1,43 @@
 "use client";
 
-import {
-  type ItemsData,
-  type RunesData,
-  type SummonerSpellsData
-} from "@/lib/_old.riot-server-api";
-import { Match, Summoner } from "@/lib/types";
+import { Card, CardBody } from "@heroui/react";
 import { Target } from "lucide-react";
+import { 
+  Match, 
+  Summoner, 
+  type SummonerSpellsData,
+  type ItemsData,
+  type RunesData
+} from "@/lib/riotServerApi";
 import MatchCard from "./MatchCard";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { RiotGameType } from "@/lib/types/riot.type";
-import { MatchV5DTOs, SummonerV4DTO } from "@/lib/ezreal/models-dto";
-import { RunesDto, SpellsDto } from "@/lib/riot.api";
 
 interface MatchHistoryProps {
-  matches: MatchV5DTOs.MatchDto[];
-  summoner: SummonerV4DTO;
-  spells: SpellsDto;
-  runes: RunesDto;
-  // itemsData: ItemsData;
+  matches: Match[];
+  summoner: Summoner;
+  spellsData: SummonerSpellsData;
+  itemsData: ItemsData;
+  runesData: RunesData;
 }
 
-export default function MatchHistory({ matches, summoner, spells, runes }: MatchHistoryProps) {
+export default function MatchHistory({ matches, summoner, spellsData, itemsData, runesData }: MatchHistoryProps) {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+      <CardBody className="p-6">
+        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
           <Target className="w-5 h-5" />
           Match History
-        </CardTitle>
-      </CardHeader>
-
-      <CardContent>
+        </h3>
+        
         {matches.length > 0 ? (
-          <div className="flex flex-col gap-2">
+          <div className="space-y-3">
             {matches.map((match) => (
-              <MatchCard
+              <MatchCard 
                 key={match.metadata.matchId}
                 match={match}
                 summoner={summoner}
-                spells={spells}
-                runes={runes}
-              // itemsData={itemsData}
+                spellsData={spellsData}
+                itemsData={itemsData}
+                runesData={runesData}
               />
             ))}
           </div>
@@ -50,7 +46,7 @@ export default function MatchHistory({ matches, summoner, spells, runes }: Match
             <p className="text-default-500">Nenhuma partida encontrada</p>
           </div>
         )}
-      </CardContent>
+      </CardBody>
     </Card>
   );
 }

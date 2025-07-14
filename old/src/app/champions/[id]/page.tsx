@@ -1,17 +1,17 @@
 "use client";
 
-import {
-  Card,
-  CardBody,
-  Image,
-  Chip,
-  Progress,
+import { 
+  Card, 
+  CardBody, 
+  Image, 
+  Chip, 
+  Progress, 
   Divider,
   Tabs,
   Tab,
   Spinner
 } from "@heroui/react";
-import { getChampionByKey, getChampionImageUrl, getChampionSplashUrl, getSpellImageUrl, getPassiveImageUrl } from "@/lib/champions-api";
+import { getChampionByKey, getChampionImageUrl, getChampionSplashUrl, getSpellImageUrl, getPassiveImageUrl } from "@/lib/championsApi";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 import { ChampionDetail } from "@/lib/types";
@@ -75,8 +75,8 @@ function formatHtmlDescription(description: string): JSX.Element {
   });
 
   formatted = formatted.replace(/(\d+(?:\.\d+)?)\s*%/g, '<span class="text-yellow-300 font-medium">$1%</span>');
-
-  formatted = formatted.replace(/(\d+(?:\.\d+)?)\s*(de dano|pontos de vida|de mana|de energia)/gi,
+  
+  formatted = formatted.replace(/(\d+(?:\.\d+)?)\s*(de dano|pontos de vida|de mana|de energia)/gi, 
     '<span class="text-white font-semibold">$1</span> $2');
 
   return <span dangerouslySetInnerHTML={{ __html: formatted }} />;
@@ -102,18 +102,18 @@ export default function ChampionPage({ params }: ChampionPageProps) {
       try {
         const resolvedParams = await params;
         const championData = await getChampionByKey(resolvedParams.id);
-
+        
         if (championData) {
           setChampion(championData);
-
+          
           const imagePromises = [
             getChampionImageUrl(championData.image.full),
             getPassiveImageUrl(championData.passive.image.full),
             ...championData.spells.map(spell => getSpellImageUrl(spell.image.full))
           ];
-
+          
           const [imgUrl, passiveUrl, ...spellUrls] = await Promise.all(imagePromises);
-
+          
           setImageUrl(imgUrl);
           setPassiveImageUrl(passiveUrl);
           setSpellImageUrls(spellUrls);
@@ -161,11 +161,11 @@ export default function ChampionPage({ params }: ChampionPageProps) {
   return (
     <div className="min-h-screen">
       <Navbar />
-
+      
       <main className="container mx-auto px-4 py-8">
         <div className="mb-6">
-          <Link
-            href="/"
+          <Link 
+            href="/" 
             className="inline-flex items-center gap-2 text-primary hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -212,7 +212,7 @@ export default function ChampionPage({ params }: ChampionPageProps) {
             <Card>
               <CardBody className="p-6">
                 <h3 className="text-xl font-bold mb-4">Statistics</h3>
-
+                
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between text-sm mb-1">
@@ -221,7 +221,7 @@ export default function ChampionPage({ params }: ChampionPageProps) {
                     </div>
                     <Progress value={champion.info.attack * 10} color="danger" />
                   </div>
-
+                  
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span>Defesa</span>
@@ -229,7 +229,7 @@ export default function ChampionPage({ params }: ChampionPageProps) {
                     </div>
                     <Progress value={champion.info.defense * 10} color="warning" />
                   </div>
-
+                  
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span>Magia</span>
@@ -237,7 +237,7 @@ export default function ChampionPage({ params }: ChampionPageProps) {
                     </div>
                     <Progress value={champion.info.magic * 10} color="secondary" />
                   </div>
-
+                  
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span>Dificuldade</span>
@@ -248,7 +248,7 @@ export default function ChampionPage({ params }: ChampionPageProps) {
                 </div>
 
                 <Divider className="my-4" />
-
+                
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>Vida:</span>
@@ -287,7 +287,7 @@ export default function ChampionPage({ params }: ChampionPageProps) {
                   </CardBody>
                 </Card>
               </Tab>
-
+              
               <Tab key="abilities" title="Habilidades">
                 <div className="space-y-4">
                   <Card>

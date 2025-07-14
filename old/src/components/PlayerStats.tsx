@@ -1,12 +1,11 @@
 "use client";
 
-import { MatchV5DTOs } from "@/lib/ezreal/models-dto";
-import { Coins, Swords, Target } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Progress } from "./ui/progress";
+import { Card, CardBody, CardHeader, Progress } from "@heroui/react";
+import { Target, Coins, Swords } from "lucide-react";
+import { type Match } from "@/lib/riotServerApi";
 
 interface PlayerStatsProps {
-  matches: MatchV5DTOs.MatchDto[];
+  matches: Match[];
   playerPuuid: string;
 }
 
@@ -71,8 +70,8 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
   const avgKills = stats.totalGames > 0 ? stats.totalKills / stats.totalGames : 0;
   const avgDeaths = stats.totalGames > 0 ? stats.totalDeaths / stats.totalGames : 0;
   const avgAssists = stats.totalGames > 0 ? stats.totalAssists / stats.totalGames : 0;
-  const avgKDA = stats.totalDeaths > 0
-    ? (stats.totalKills + stats.totalAssists) / stats.totalDeaths
+  const avgKDA = stats.totalDeaths > 0 
+    ? (stats.totalKills + stats.totalAssists) / stats.totalDeaths 
     : stats.totalKills + stats.totalAssists;
   const avgCSPerMin = stats.totalGames > 0 ? stats.totalCSPerMin / stats.totalGames : 0;
   const avgDamage = stats.totalGames > 0 ? stats.totalDamage / stats.totalGames : 0;
@@ -86,37 +85,32 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       {/* Win Rate Card */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>Win Rate</span>
+        <CardBody className="p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-default-500">Win Rate</span>
             <Target className="w-4 h-4 text-primary" />
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent>
+          </div>
           <div className="text-2xl font-bold text-primary mb-2">
             {winRate.toFixed(1)}%
           </div>
-          <Progress
-            value={winRate}
+          <Progress 
+            value={winRate} 
             color={winRate >= 50 ? "success" : "danger"}
-            className="mb-2 border"
+            className="mb-2"
           />
           <div className="text-xs text-default-500">
             {stats.wins}V {stats.totalGames - stats.wins}D
           </div>
-        </CardContent>
+        </CardBody>
       </Card>
 
       {/* KDA Card */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>Average KDA</span>
-            <Swords className="w-4 h-4 text-primary" />
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardBody className="p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-default-500">Average KDA</span>
+            <Swords className="w-4 h-4 text-orange-500" />
+          </div>
           <div className="text-2xl font-bold mb-2">
             {avgKDA.toFixed(2)}
           </div>
@@ -126,19 +120,16 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
           <div className="text-xs text-default-500 mt-1">
             Per match
           </div>
-        </CardContent>
+        </CardBody>
       </Card>
 
       {/* CS/min Card */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>CS/min</span>
-            <Coins className="w-4 h-4 text-primary" />
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent>
+        <CardBody className="p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-default-500">CS/min</span>
+            <Coins className="w-4 h-4 text-yellow-500" />
+          </div>
           <div className="text-2xl font-bold mb-2">
             {avgCSPerMin.toFixed(1)}
           </div>
@@ -148,22 +139,21 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
           <div className="text-xs text-default-500 mt-1">
             {(avgDamage / 1000).toFixed(1)}k damage/match
           </div>
-        </CardContent>
+        </CardBody>
       </Card>
 
       {/* Top Champions Card */}
       <Card>
-        <CardHeader>
-          <CardTitle>Top Champions</CardTitle>
+        <CardHeader className="pb-2 pt-4 px-4">
+          <span className="text-sm text-default-500">Top Champions</span>
         </CardHeader>
-
-        <CardContent className="pt-2 px-4 pb-4">
+        <CardBody className="pt-2 px-4 pb-4">
           {topChampions.map(([champName, champStats]) => {
             const champWinRate = (champStats.wins / champStats.games) * 100;
-            const champKDA = champStats.deaths > 0
-              ? (champStats.kills + champStats.assists) / champStats.deaths
+            const champKDA = champStats.deaths > 0 
+              ? (champStats.kills + champStats.assists) / champStats.deaths 
               : champStats.kills + champStats.assists;
-
+            
             return (
               <div key={champName} className="mb-2">
                 <div className="flex justify-between items-center">
@@ -181,7 +171,7 @@ export default function PlayerStats({ matches, playerPuuid }: PlayerStatsProps) 
               </div>
             );
           })}
-        </CardContent>
+        </CardBody>
       </Card>
     </div>
   );
